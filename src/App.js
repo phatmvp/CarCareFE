@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import {
   BrowserRouter as Router,
@@ -6,6 +6,7 @@ import {
   Route,
   useNavigate,
 } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 import HomePage from "./components/HomePage";
 import CustomerLoginPage from "./components/CustomerLoginPage";
 import CustomerRegisterPage from "./components/CustomerRegisterPage";
@@ -27,12 +28,29 @@ const theme = createTheme({
 function AppContent() {
   const [userType, setUserType] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [username, setUsername] = useState("");
   const [currentView, setCurrentView] = useState("main");
   const navigate = useNavigate();
+
+  // Kiểm tra token khi load trang để tự động đăng nhập
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      try {
+        const decoded = jwtDecode(token);
+        setUserType(decoded.role);
+        setUsername(decoded.username || "User"); // Giả định backend trả username trong token
+        setIsLoggedIn(true);
+      } catch (error) {
+        localStorage.removeItem("token");
+      }
+    }
+  }, []);
 
   const handleLogin = (type) => {
     setUserType(type);
     setIsLoggedIn(true);
+    setUsername(jwtDecode(localStorage.getItem("token")).username || "User");
     setCurrentView("main");
     navigate(type === "customer" ? "/customer/dashboard" : "/garage/dashboard");
   };
@@ -40,6 +58,7 @@ function AppContent() {
   const handleLogout = () => {
     setUserType(null);
     setIsLoggedIn(false);
+    setUsername("");
     localStorage.removeItem("token");
     navigate("/");
   };
@@ -71,6 +90,10 @@ function AppContent() {
               onRegisterClick={handleRegisterClick}
               onHistoryClick={handleHistoryClick}
               onServiceClick={handleServiceClick}
+              isLoggedIn={isLoggedIn}
+              userType={userType}
+              username={username}
+              onLogout={handleLogout}
             />
           }
         />
@@ -85,7 +108,6 @@ function AppContent() {
         />
         <Route path="/registerGarage" element={<GarageRegisterPage />} />
 
-        {/* Routes khi đã đăng nhập */}
         {isLoggedIn && userType === "customer" && (
           <>
             <Route
@@ -140,7 +162,7 @@ function AppContent() {
                 <Container>
                   <FeedbackForm
                     setView={handleSetView}
-                    bookingId={window.location.pathname.split("/")[3]} // Lấy bookingId từ URL
+                    bookingId={window.location.pathname.split("/")[3]}
                   />
                   <Button
                     onClick={handleLogout}

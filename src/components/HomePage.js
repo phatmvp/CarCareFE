@@ -10,38 +10,100 @@ import {
   Paper,
   Divider,
   IconButton,
+  Menu,
+  MenuItem,
 } from "@mui/material";
-import { Facebook, Phone, Email, TikTok, Chat } from "@mui/icons-material"; // Giả định có icon TikTok
+import { Facebook, Phone, Email, Chat } from "@mui/icons-material"; // Loại bỏ TikTok nếu không có
+import { useNavigate } from "react-router-dom";
 
 function HomePage({
   onLoginClick,
   onRegisterClick,
   onHistoryClick,
   onServiceClick,
+  isLoggedIn,
+  userType,
+  username,
+  onLogout,
 }) {
+  const navigate = useNavigate();
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+
+  const handleGara = () => {
+    navigate("/garage/dashboard");
+  };
+
+  const handleRegisterClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleRegisterClose = (role) => {
+    setAnchorEl(null);
+    if (role) onRegisterClick(role);
+  };
+
   return (
     <Box sx={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
       {/* Header */}
       <AppBar position="static" color="primary">
         <Toolbar>
-          <Typography variant="h6" sx={{ flexGrow: 1 }}>
+          <Typography
+            variant="h6"
+            sx={{ flexGrow: 1 }}
+            onClick={() => navigate("/")}
+            style={{ cursor: "pointer" }}
+          >
             CarCare
           </Typography>
-          <Button color="inherit" onClick={onLoginClick}>
-            Đăng nhập
-          </Button>
-          <Button color="inherit" onClick={() => onRegisterClick("customer")}>
-            Đăng ký (Khách hàng)
-          </Button>
-          <Button color="inherit" onClick={() => onRegisterClick("garage")}>
-            Đăng ký (Garage)
-          </Button>
-          <Button color="inherit" onClick={onHistoryClick}>
-            Lịch sử Booking
-          </Button>
-          <Button color="inherit" onClick={onServiceClick}>
-            Dịch vụ
-          </Button>
+          {!isLoggedIn ? (
+            <>
+              <Button color="inherit" onClick={onLoginClick}>
+                Đăng nhập
+              </Button>
+              <Button color="inherit" onClick={handleRegisterClick}>
+                Đăng ký
+              </Button>
+              <Menu
+                anchorEl={anchorEl}
+                open={open}
+                onClose={() => handleRegisterClose(null)}
+              >
+                <MenuItem onClick={() => handleRegisterClose("customer")}>
+                  Đăng ký (Khách hàng)
+                </MenuItem>
+                <MenuItem onClick={() => handleRegisterClose("garage")}>
+                  Đăng ký (Garage)
+                </MenuItem>
+              </Menu>
+            </>
+          ) : (
+            <>
+              {userType === "customer" && (
+                <>
+                  <Button color="inherit" onClick={onHistoryClick}>
+                    Lịch sử
+                  </Button>
+                  <Button color="inherit" onClick={onServiceClick}>
+                    Dịch vụ
+                  </Button>
+                </>
+              )}
+              <Button
+                variant="garaManager"
+                sx={{ mx: 2 }}
+                onClick={() => handleGara()}
+              >
+                Quản Lý Gara
+              </Button>
+              <Typography variant="subtitle1" sx={{ mx: 2 }}>
+                {username}
+              </Typography>
+              <Button color="inherit" onClick={onLogout}>
+                Đăng xuất
+              </Button>
+            </>
+          )}
         </Toolbar>
       </AppBar>
 
@@ -106,13 +168,6 @@ function HomePage({
                 <IconButton
                   color="inherit"
                   href="https://zalo.me/carcare"
-                  target="_blank"
-                >
-                  <Chat /> {/* Icon giả lập cho Zalo */}
-                </IconButton>
-                <IconButton
-                  color="inherit"
-                  href="https://tiktok.com/@carcare"
                   target="_blank"
                 >
                   <Chat />

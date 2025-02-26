@@ -1,12 +1,18 @@
 import React, { useState } from "react";
 import { TextField, MenuItem, Button, Box, Typography } from "@mui/material";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function BookingForm({ setView }) {
   const [carInfo, setCarInfo] = useState("");
   const [condition, setCondition] = useState("");
   const [service, setService] = useState("");
   const [time, setTime] = useState("");
+  const navigate = useNavigate();
+
+  const handleViewHistory = () => {
+    navigate("/customer/history");
+  };
 
   const spaPrices = { "Rửa xe": 100000, "Đánh bóng": 500000 };
   const rescuePrices = { "Cẩu xe": 1000000, "Sửa tại chỗ": 300000 };
@@ -76,7 +82,8 @@ function BookingForm({ setView }) {
         Gửi Booking
       </Button>
       <Button
-        onClick={() => setView("history")}
+        // onClick={() => setView("history")}
+        onClick={() => handleViewHistory()}
         variant="outlined"
         fullWidth
         sx={{ mt: 2 }}

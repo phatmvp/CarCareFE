@@ -13,11 +13,17 @@ import {
   Button,
   CircularProgress,
 } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 function BookingHistory({ setView }) {
   const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const navigate = useNavigate();
+
+  const quayLai = () => {
+    navigate("/customer/dashboard");
+  };
 
   useEffect(() => {
     fetchBookings();
@@ -103,7 +109,8 @@ function BookingHistory({ setView }) {
         color="secondary"
         fullWidth
         sx={{ mt: 3 }}
-        onClick={() => setView("main")}
+        // onClick={() => setView("main")}
+        onClick={() => quayLai()}
       >
         Quay lại
       </Button>
