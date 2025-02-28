@@ -32,12 +32,14 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
-function PremiumBookingPage() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [fullName, setFullName] = useState("");
-  const [phone, setPhone] = useState("");
+
+function Login() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [fullName, setFullName] = useState('');
+  const [phone, setPhone] = useState('');
+
   const [tabValue, setTabValue] = useState(0);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -48,9 +50,11 @@ function PremiumBookingPage() {
     message: "",
   });
 
-  const primaryColor = "#1A2526";
-  const accentColor = "#D4AF37";
-  const gradientDark = "#2E3B55";
+
+  const primaryColor = "#fff";
+  const accentColor = "#004d40";
+
+
 
   const handleTabChange = (event, newValue) => {
     setTabValue(newValue);
@@ -153,14 +157,16 @@ function PremiumBookingPage() {
   return (
     <Box
       sx={{
-        minHeight: "100vh",
-        background: `linear-gradient(135deg, ${primaryColor} 0%, ${gradientDark} 100%)`,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        position: "relative",
-        overflow: "hidden",
-        "&::before": {
+
+        minHeight: '100vh',
+        background: `#f5f5f5`,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        position: 'relative',
+        overflow: 'hidden',
+        '&::before': {
+
           content: '""',
           position: "absolute",
           width: "200%",
@@ -180,9 +186,11 @@ function PremiumBookingPage() {
             elevation={24}
             sx={{
               borderRadius: { xs: 4, md: 6 },
-              backgroundColor: "rgba(26, 37, 38, 0.95)",
-              backdropFilter: "blur(20px)",
-              border: "1px solid rgba(255, 255, 255, 0.1)",
+
+
+              backdropFilter: 'blur(20px)',
+              border: '1px solid rgba(255, 255, 255, 0.1)',
+
               boxShadow: `0 30px 70px rgba(0, 0, 0, 0.5), 0 10px 20px ${primaryColor}40`,
               position: "relative",
               overflow: "hidden",
@@ -192,9 +200,11 @@ function PremiumBookingPage() {
                 top: 0,
                 left: 0,
                 right: 0,
-                height: "5px",
-                background: `linear-gradient(90deg, ${accentColor} 0%, ${gradientDark} 100%)`,
-              },
+
+                height: '5px',
+                background: `linear-gradient(90deg, ${accentColor} 0%)`,
+              }
+
             }}
           >
             <Grid container direction={{ xs: "column", md: "row" }}>
@@ -204,8 +214,10 @@ function PremiumBookingPage() {
                 xs={12}
                 md={7}
                 sx={{
-                  display: { xs: "none", md: "flex" }, // Ẩn trên mobile
-                  background: `linear-gradient(135deg, ${primaryColor} 0%, ${gradientDark} 100%)`,
+
+                  display: { xs: 'none', md: 'flex' }, // Ẩn trên mobile
+                  background: `linear-gradient(135deg, ${primaryColor} 0%)`,
+
                   p: { sm: 4, md: 6 },
                   flexDirection: "column",
                   justifyContent: "center",
@@ -218,9 +230,11 @@ function PremiumBookingPage() {
                     left: 0,
                     right: 0,
                     bottom: 0,
-                    backgroundImage: "url(/api/placeholder/800/1000)",
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
+
+
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+
                     opacity: 0.05,
                     zIndex: 0,
                   },
@@ -285,9 +299,11 @@ function PremiumBookingPage() {
                     sx={{
                       fontWeight: 700,
                       mb: 1,
-                      letterSpacing: "-0.5px",
-                      fontSize: { xs: "1.5rem", sm: "1.8rem", md: "2.5rem" },
-                      color: "#F5F5F5",
+
+                      letterSpacing: '-0.5px',
+                      fontSize: { xs: '1.5rem', sm: '1.8rem', md: '2.5rem' },
+                      color: '#000'
+
                     }}
                   >
                     Đặt lịch gara ô tô
@@ -312,9 +328,10 @@ function PremiumBookingPage() {
                       mb: { xs: 3, md: 4 },
                       fontSize: { xs: "0.9rem", md: "1.1rem" },
                       lineHeight: 1.6,
-                      opacity: 0.85,
-                      maxWidth: "90%",
-                      color: "#D1D5DB",
+
+                      maxWidth: '90%',
+                      color: '#757575'
+
                     }}
                   >
                     Kết nối với hàng trăm gara uy tín trên toàn quốc, giúp bạn
@@ -348,15 +365,9 @@ function PremiumBookingPage() {
                           />
                         </Avatar>
                         <Box>
-                          <Typography
-                            variant="h6"
-                            sx={{
-                              fontWeight: 600,
-                              mb: 0.5,
-                              color: "#F5F5F5",
-                              fontSize: { xs: "0.9rem", md: "1.1rem" },
-                            }}
-                          >
+
+                          <Typography variant="h6" sx={{ fontWeight: 600, mb: 0.5, color: '#000000', fontSize: { xs: '0.9rem', md: '1.1rem' } }}>
+
                             Đặt lịch nhanh chóng
                           </Typography>
                         </Box>
@@ -384,15 +395,9 @@ function PremiumBookingPage() {
                           />
                         </Avatar>
                         <Box>
-                          <Typography
-                            variant="h6"
-                            sx={{
-                              fontWeight: 600,
-                              mb: 0.5,
-                              color: "#F5F5F5",
-                              fontSize: { xs: "0.9rem", md: "1.1rem" },
-                            }}
-                          >
+
+                          <Typography variant="h6" sx={{ fontWeight: 600, mb: 0.5, color: '#000000', fontSize: { xs: '0.9rem', md: '1.1rem' } }}>
+
                             Nhiều dịch vụ đa dạng
                           </Typography>
                         </Box>
@@ -420,15 +425,9 @@ function PremiumBookingPage() {
                           />
                         </Avatar>
                         <Box>
-                          <Typography
-                            variant="h6"
-                            sx={{
-                              fontWeight: 600,
-                              mb: 0.5,
-                              color: "#F5F5F5",
-                              fontSize: { xs: "0.9rem", md: "1.1rem" },
-                            }}
-                          >
+
+                          <Typography variant="h6" sx={{ fontWeight: 600, mb: 0.5, color: '#000000', fontSize: { xs: '0.9rem', md: '1.1rem' } }}>
+
                             Gara uy tín
                           </Typography>
                         </Box>
@@ -456,15 +455,9 @@ function PremiumBookingPage() {
                           />
                         </Avatar>
                         <Box>
-                          <Typography
-                            variant="h6"
-                            sx={{
-                              fontWeight: 600,
-                              mb: 0.5,
-                              color: "#F5F5F5",
-                              fontSize: { xs: "0.9rem", md: "1.1rem" },
-                            }}
-                          >
+
+                          <Typography variant="h6" sx={{ fontWeight: 600, mb: 0.5, color: '#000', fontSize: { xs: '0.9rem', md: '1.1rem' } }}>
+
                             So sánh giá cả
                           </Typography>
                         </Box>
@@ -490,11 +483,13 @@ function PremiumBookingPage() {
                         backgroundColor: accentColor,
                         color: primaryColor,
                         fontWeight: 700,
-                        fontSize: { xs: "0.9rem", md: "1rem" },
-                        textTransform: "none",
-                        "&:hover": {
-                          backgroundColor: "#E6C774",
-                          transform: "translateY(-3px)",
+
+                        fontSize: { xs: '0.9rem', md: '1rem' },
+                        textTransform: 'none',
+                        '&:hover': {
+                          backgroundColor: "#003630",
+                          transform: "scale(1.05)",
+
                           boxShadow: `0 10px 25px ${accentColor}80`,
                         },
                         transition: "all 0.3s ease",
@@ -514,13 +509,15 @@ function PremiumBookingPage() {
                         color: accentColor,
                         borderWidth: 2,
                         fontWeight: 600,
-                        fontSize: { xs: "0.9rem", md: "1rem" },
-                        textTransform: "none",
-                        "&:hover": {
-                          borderColor: "#E6C774",
-                          color: "#E6C774",
-                          backgroundColor: "rgba(255,255,255,0.05)",
-                          transform: "translateY(-3px)",
+
+                        fontSize: { xs: '0.9rem', md: '1rem' },
+                        textTransform: 'none',
+                        '&:hover': {
+                          backgroundColor: "#003630",
+                          transform: "scale(1.05)",
+                          backgroundColor: 'rgba(255,255,255,0.05)',
+
+
                         },
                         transition: "all 0.3s ease",
                       }}
@@ -540,9 +537,10 @@ function PremiumBookingPage() {
                   p: { xs: 3, sm: 4, md: 5 },
                   position: "relative",
                   zIndex: 1,
-                  display: "flex",
-                  alignItems: "center",
-                  backgroundColor: "rgba(26, 37, 38, 0.98)",
+
+                  display: 'flex',
+                  alignItems: 'center',
+
                   borderRadius: { xs: 4, md: 6 },
                   borderTopLeftRadius: { xs: 4, md: 0 },
                   borderTopRightRadius: { xs: 4, md: 6 },
@@ -570,7 +568,7 @@ function PremiumBookingPage() {
 
                   <Typography
                     variant="body1"
-                    color="#D1D5DB"
+                    color="#000"
                     align="center"
                     sx={{
                       mb: { xs: 3, md: 4 },
@@ -622,7 +620,7 @@ function PremiumBookingPage() {
                           required
                           fullWidth
                           id="email"
-                          label="Địa chỉ Email"
+                          label="Địa chỉ Email"QQ
                           name="email"
                           autoComplete="email"
                           autoFocus
@@ -1046,8 +1044,10 @@ function PremiumBookingPage() {
                       variant="contained"
                       sx={{
                         py: { xs: 1.2, md: 1.8 },
-                        borderRadius: "15px",
-                        background: `linear-gradient(45deg, ${accentColor} 100%, ${gradientDark} 100%)`,
+
+                        borderRadius: '15px',
+                        background: `linear-gradient(45deg, ${accentColor} 100%)`,
+
                         color: primaryColor,
                         fontSize: { xs: "0.9rem", md: "1rem" },
                         fontWeight: 600,
@@ -1175,4 +1175,8 @@ function PremiumBookingPage() {
   );
 }
 
-export default PremiumBookingPage;
+
+export default Login;
+
+
+
