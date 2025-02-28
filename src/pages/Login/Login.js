@@ -28,7 +28,6 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import GoogleIcon from '@mui/icons-material/Google';
 import FacebookIcon from '@mui/icons-material/Facebook';
-
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
@@ -44,7 +43,6 @@ function Login() {
 
   const primaryColor = "#fff";
   const accentColor = "#004d40";
-
 
   const handleTabChange = (event, newValue) => {
     setTabValue(newValue);
@@ -92,7 +90,6 @@ function Login() {
             elevation={24}
             sx={{
               borderRadius: { xs: 4, md: 6 },
-
               backdropFilter: 'blur(20px)',
               border: '1px solid rgba(255, 255, 255, 0.1)',
               boxShadow: `0 30px 70px rgba(0, 0, 0, 0.5), 0 10px 20px ${primaryColor}40`,
@@ -113,8 +110,8 @@ function Login() {
               {/* Left side - Features (Hidden on mobile) */}
               <Grid item xs={12} md={7}
                 sx={{
-                  display: { xs: 'none', md: 'flex' }, // Ẩn trên mobile
-                  background: `linear-gradient(135deg, ${primaryColor} 0%)`,
+                  display: { xs: 'none', md: 'flex' },
+                  background: `linear-gradient(135deg, #004d40 0%, #002e2a 100%)`,
                   p: { sm: 4, md: 6 },
                   flexDirection: 'column',
                   justifyContent: 'center',
@@ -127,7 +124,6 @@ function Login() {
                     left: 0,
                     right: 0,
                     bottom: 0,
-
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     opacity: 0.05,
@@ -141,14 +137,14 @@ function Login() {
                   <Box sx={{ display: 'flex', alignItems: 'center', mb: { xs: 2, md: 3 } }}>
                     <Avatar
                       sx={{
-                        bgcolor: accentColor,
-                        width: { xs: 48, md: 60 }, // Smaller avatar on mobile
+                        bgcolor: 'white',
+                        width: { xs: 48, md: 60 },
                         height: { xs: 48, md: 60 },
                         boxShadow: '0 8px 24px rgba(0, 0, 0, 0.3)',
                         mr: 2
                       }}
                     >
-                      <DirectionsCarIcon sx={{ fontSize: { xs: '1.5rem', md: '2rem' }, color: primaryColor }} />
+                      <DirectionsCarIcon sx={{ fontSize: { xs: '1.5rem', md: '2rem' }, color: accentColor }} />
                     </Avatar>
                     <Typography
                       component="h1"
@@ -157,8 +153,8 @@ function Login() {
                         fontWeight: 800,
                         letterSpacing: '-0.5px',
                         textShadow: '0 2px 10px rgba(0,0,0,0.3)',
-                        color: accentColor,
-                        fontSize: { xs: '2rem', md: '3rem' } // Smaller title on mobile
+                        color: 'white',
+                        fontSize: { xs: '2rem', md: '3rem' }
                       }}
                     >
                       CarCare
@@ -185,7 +181,7 @@ function Login() {
                       mb: 1,
                       letterSpacing: '-0.5px',
                       fontSize: { xs: '1.5rem', sm: '1.8rem', md: '2.5rem' },
-                      color: '#000'
+                      color: 'white'
                     }}
                   >
                     Đặt lịch gara ô tô
@@ -196,7 +192,7 @@ function Login() {
                     sx={{
                       fontWeight: 700,
                       mb: { xs: 2, md: 3 },
-                      color: accentColor,
+                      color: 'white',
                       textShadow: '0 2px 10px rgba(0,0,0,0.2)',
                       fontSize: { xs: '1.5rem', sm: '1.8rem', md: '2.5rem' }
                     }}
@@ -210,9 +206,8 @@ function Login() {
                       mb: { xs: 3, md: 4 },
                       fontSize: { xs: '0.9rem', md: '1.1rem' },
                       lineHeight: 1.6,
-
                       maxWidth: '90%',
-                      color: '#757575'
+                      color: '#cccccc'
                     }}
                   >
                     Kết nối với hàng trăm gara uy tín trên toàn quốc, giúp bạn dễ dàng đặt lịch bảo dưỡng, sửa chữa hoặc chăm sóc xe chỉ trong vài bước.
@@ -223,17 +218,17 @@ function Login() {
                       <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
                         <Avatar
                           sx={{
-                            bgcolor: accentColor,
+                            bgcolor: 'white',
                             mr: 1.5,
                             width: { xs: 36, md: 40 },
                             height: { xs: 36, md: 40 },
                             boxShadow: '0 4px 12px rgba(0,0,0,0.2)'
                           }}
                         >
-                          <SpeedIcon sx={{ color: primaryColor, fontSize: { xs: '1.2rem', md: '1.5rem' } }} />
+                          <SpeedIcon sx={{ color: accentColor, fontSize: { xs: '1.2rem', md: '1.5rem' } }} />
                         </Avatar>
                         <Box>
-                          <Typography variant="h6" sx={{ fontWeight: 600, mb: 0.5, color: '#000000', fontSize: { xs: '0.9rem', md: '1.1rem' } }}>
+                          <Typography variant="h6" sx={{ fontWeight: 600, mb: 0.5, color: 'white', fontSize: { xs: '0.9rem', md: '1.1rem' } }}>
                             Đặt lịch nhanh chóng
                           </Typography>
                         </Box>
@@ -244,17 +239,17 @@ function Login() {
                       <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
                         <Avatar
                           sx={{
-                            bgcolor: accentColor,
+                            bgcolor: 'white',
                             mr: 1.5,
                             width: { xs: 36, md: 40 },
                             height: { xs: 36, md: 40 },
                             boxShadow: '0 4px 12px rgba(0,0,0,0.2)'
                           }}
                         >
-                          <CleaningServicesIcon sx={{ color: primaryColor, fontSize: { xs: '1.2rem', md: '1.5rem' } }} />
+                          <CleaningServicesIcon sx={{ color: accentColor, fontSize: { xs: '1.2rem', md: '1.5rem' } }} />
                         </Avatar>
                         <Box>
-                          <Typography variant="h6" sx={{ fontWeight: 600, mb: 0.5, color: '#000000', fontSize: { xs: '0.9rem', md: '1.1rem' } }}>
+                          <Typography variant="h6" sx={{ fontWeight: 600, mb: 0.5, color: 'white', fontSize: { xs: '0.9rem', md: '1.1rem' } }}>
                             Nhiều dịch vụ đa dạng
                           </Typography>
                         </Box>
@@ -265,17 +260,17 @@ function Login() {
                       <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
                         <Avatar
                           sx={{
-                            bgcolor: accentColor,
+                            bgcolor: 'white',
                             mr: 1.5,
                             width: { xs: 36, md: 40 },
                             height: { xs: 36, md: 40 },
                             boxShadow: '0 4px 12px rgba(0,0,0,0.2)'
                           }}
                         >
-                          <CheckCircleIcon sx={{ color: primaryColor, fontSize: { xs: '1.2rem', md: '1.5rem' } }} />
+                          <CheckCircleIcon sx={{ color: accentColor, fontSize: { xs: '1.2rem', md: '1.5rem' } }} />
                         </Avatar>
                         <Box>
-                          <Typography variant="h6" sx={{ fontWeight: 600, mb: 0.5, color: '#000000', fontSize: { xs: '0.9rem', md: '1.1rem' } }}>
+                          <Typography variant="h6" sx={{ fontWeight: 600, mb: 0.5, color: 'white', fontSize: { xs: '0.9rem', md: '1.1rem' } }}>
                             Gara uy tín
                           </Typography>
                         </Box>
@@ -286,17 +281,17 @@ function Login() {
                       <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
                         <Avatar
                           sx={{
-                            bgcolor: accentColor,
+                            bgcolor: 'white',
                             mr: 1.5,
                             width: { xs: 36, md: 40 },
                             height: { xs: 36, md: 40 },
                             boxShadow: '0 4px 12px rgba(0,0,0,0.2)'
                           }}
                         >
-                          <LocalOfferIcon sx={{ color: primaryColor, fontSize: { xs: '1.2rem', md: '1.5rem' } }} />
+                          <LocalOfferIcon sx={{ color: accentColor, fontSize: { xs: '1.2rem', md: '1.5rem' } }} />
                         </Avatar>
                         <Box>
-                          <Typography variant="h6" sx={{ fontWeight: 600, mb: 0.5, color: '#000', fontSize: { xs: '0.9rem', md: '1.1rem' } }}>
+                          <Typography variant="h6" sx={{ fontWeight: 600, mb: 0.5, color: 'white', fontSize: { xs: '0.9rem', md: '1.1rem' } }}>
                             So sánh giá cả
                           </Typography>
                         </Box>
@@ -341,16 +336,14 @@ function Login() {
                         px: { xs: 3, md: 4 },
                         borderRadius: '50px',
                         borderColor: accentColor,
-                        color: accentColor,
+                        color: 'white',
                         borderWidth: 2,
                         fontWeight: 600,
                         fontSize: { xs: '0.9rem', md: '1rem' },
                         textTransform: 'none',
                         '&:hover': {
-                          backgroundColor: "#003630",
-                          transform: "scale(1.05)",
                           backgroundColor: 'rgba(255,255,255,0.05)',
-
+                          transform: "scale(1.05)",
                         },
                         transition: 'all 0.3s ease',
                       }}
@@ -369,7 +362,6 @@ function Login() {
                   zIndex: 1,
                   display: 'flex',
                   alignItems: 'center',
-
                   borderRadius: { xs: 4, md: 6 },
                   borderTopLeftRadius: { xs: 4, md: 0 },
                   borderTopRightRadius: { xs: 4, md: 6 }
@@ -439,7 +431,7 @@ function Login() {
                           required
                           fullWidth
                           id="email"
-                          label="Địa chỉ Email"QQ
+                          label="Địa chỉ Email"
                           name="email"
                           autoComplete="email"
                           autoFocus
@@ -457,7 +449,7 @@ function Login() {
                             '& .MuiOutlinedInput-root': {
                               borderRadius: '15px',
                               backgroundColor: 'rgba(255, 255, 255, 0.05)',
-                              color: '#F5F5F5',
+                              color: '#333',
                               fontSize: { xs: '0.9rem', md: '1rem' },
                               '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
                                 borderColor: accentColor,
@@ -512,7 +504,7 @@ function Login() {
                             '& .MuiOutlinedInput-root': {
                               borderRadius: '15px',
                               backgroundColor: 'rgba(255, 255, 255, 0.05)',
-                              color: '#F5F5F5',
+                              color: '#333',
                               fontSize: { xs: '0.9rem', md: '1rem' },
                               '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
                                 borderColor: accentColor,
@@ -556,7 +548,7 @@ function Login() {
                             '& .MuiOutlinedInput-root': {
                               borderRadius: '15px',
                               backgroundColor: 'rgba(255, 255, 255, 0.05)',
-                              color: '#F5F5F5',
+                              color: '#333',
                               fontSize: { xs: '0.9rem', md: '1rem' },
                               '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
                                 borderColor: accentColor,
@@ -598,7 +590,7 @@ function Login() {
                             '& .MuiOutlinedInput-root': {
                               borderRadius: '15px',
                               backgroundColor: 'rgba(255, 255, 255, 0.05)',
-                              color: '#F5F5F5',
+                              color: '#333',
                               fontSize: { xs: '0.9rem', md: '1rem' },
                               '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
                                 borderColor: accentColor,
@@ -641,7 +633,7 @@ function Login() {
                             '& .MuiOutlinedInput-root': {
                               borderRadius: '15px',
                               backgroundColor: 'rgba(255, 255, 255, 0.05)',
-                              color: '#F5F5F5',
+                              color: '#333',
                               fontSize: { xs: '0.9rem', md: '1rem' },
                               '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
                                 borderColor: accentColor,
@@ -695,7 +687,7 @@ function Login() {
                             '& .MuiOutlinedInput-root': {
                               borderRadius: '15px',
                               backgroundColor: 'rgba(255, 255, 255, 0.05)',
-                              color: '#F5F5F5',
+                              color: '#333',
                               fontSize: { xs: '0.9rem', md: '1rem' },
                               '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
                                 borderColor: accentColor,
@@ -749,7 +741,7 @@ function Login() {
                             '& .MuiOutlinedInput-root': {
                               borderRadius: '15px',
                               backgroundColor: 'rgba(255, 255, 255, 0.05)',
-                              color: '#F5F5F5',
+                              color: '#333',
                               fontSize: { xs: '0.9rem', md: '1rem' },
                               '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
                                 borderColor: accentColor,
@@ -779,7 +771,7 @@ function Login() {
                           fontWeight: 500,
                           fontSize: { xs: '0.8rem', md: '0.875rem' },
                           '&:hover': {
-                            color: '#E6C774',
+
                             textDecoration: 'none'
                           },
                           transition: 'all 0.2s ease',
@@ -796,14 +788,13 @@ function Login() {
                       sx={{
                         py: { xs: 1.2, md: 1.8 },
                         borderRadius: '15px',
-                        background: `linear-gradient(45deg, ${accentColor} 100%)`,
+                        background: accentColor,
                         color: primaryColor,
                         fontSize: { xs: '0.9rem', md: '1rem' },
                         fontWeight: 600,
                         textTransform: 'none',
                         letterSpacing: '0.5px',
                         '&:hover': {
-
                           boxShadow: `0 8px 25px ${accentColor}60`,
                           transform: 'translateY(-3px)'
                         },
@@ -831,7 +822,7 @@ function Login() {
                         sx={{
                           borderRadius: '10px',
                           borderColor: '#DB4437',
-                          color: '#F5F5F5',
+                          color: '#DB4437',
                           px: { xs: 2, md: 3 },
                           py: 1.2,
                           fontSize: { xs: '0.8rem', md: '0.875rem' },
@@ -851,7 +842,7 @@ function Login() {
                         sx={{
                           borderRadius: '10px',
                           borderColor: '#1877F2',
-                          color: '#F5F5F5',
+                          color: '#1877F2',
                           px: { xs: 2, md: 3 },
                           py: 1.2,
                           fontSize: { xs: '0.8rem', md: '0.875rem' },
@@ -889,7 +880,7 @@ function Login() {
                           fontWeight: 600,
                           fontSize: { xs: '0.8rem', md: '0.875rem' },
                           '&:hover': {
-                            color: '#E6C774',
+
                             textDecoration: 'none'
                           },
                           transition: 'all 0.2s ease',
@@ -910,5 +901,3 @@ function Login() {
 }
 
 export default Login;
-
-
