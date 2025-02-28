@@ -1,6 +1,8 @@
-import HomePage from "./component/HomePage/HomePage";
+
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
-import LoginPage from "./pages/Login";
+
+import HomePage from "./pages/HomePage/HomePage";
+import Login from './pages/Login/Login';
 function App() {
   return (
     <BrowserRouter>
@@ -18,7 +20,7 @@ function App() {
         <Route
           path="/car-care/login"
           element={
-            <LoginPage />
+            <Login />
           }
         />
       </Routes>
