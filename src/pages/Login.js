@@ -57,8 +57,6 @@ function PremiumBookingPage() {
   };
 
   const handleSubmit = async (event) => {
-    event.preventDefault();
-
     if (tabValue === 1 && password !== confirmPassword) {
       setAlert({
         show: true,
@@ -82,6 +80,7 @@ function PremiumBookingPage() {
         });
 
         const data = await response.json();
+        console.log(data);
 
         if (!response.ok) {
           throw new Error(data.error || "Đăng nhập thất bại");
@@ -96,11 +95,11 @@ function PremiumBookingPage() {
           severity: "success",
           message: "Đăng nhập thành công!",
         });
-
-        // Chuyển hướng sau khi đăng nhập thành công
-        setTimeout(() => {
-          window.location.href = "/car-care/home";
-        }, 1500);
+        event.preventDefault();
+        // // Chuyển hướng sau khi đăng nhập thành công
+        // setTimeout(() => {
+        //   window.location.href = "/car-care/login/#";
+        // }, 1500);
       } else {
         // Xử lý đăng ký
         const response = await fetch(
