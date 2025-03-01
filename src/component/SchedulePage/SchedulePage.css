@@ -1,0 +1,248 @@
+/* SchedulePage.css */
+:root {
+    --primary-color: #4361ee;
+    --secondary-color: #3f37c9;
+    --success-color: #4cc9f0;
+    --danger-color: #f72585;
+    --light-color: #f8f9fa;
+    --dark-color: #212529;
+    --border-radius: 10px;
+    --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .schedule-container {
+    padding: 15px;
+    max-width: 100%;
+    margin: 0 auto;
+    background-color: #f5f7fa;
+    min-height: 100vh;
+  }
+  
+  .header-row {
+    margin-bottom: 1.5rem;
+  }
+  
+  .page-title {
+    color: var(--dark-color);
+    font-weight: 600;
+    font-size: 1.5rem;
+    margin-bottom: 0;
+    display: flex;
+    align-items: center;
+  }
+  
+  .filter-card {
+    border-radius: var(--border-radius);
+    border: none;
+    box-shadow: var(--box-shadow);
+    margin-bottom: 1.5rem;
+    background-color: white;
+  }
+  
+  .filter-label {
+    font-weight: 500;
+    color: var(--dark-color);
+    display: flex;
+    align-items: center;
+  }
+  
+  .form-control-custom {
+    border-radius: var(--border-radius);
+    border: 1px solid #ced4da;
+    padding: 10px 15px;
+    font-size: 1rem;
+  }
+  
+  .form-control-custom:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(67, 97, 238, 0.25);
+  }
+  
+  .selected-date {
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+    font-weight: 500;
+    color: var(--primary-color);
+  }
+  
+  .loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+  }
+  
+  .schedule-slots-card {
+    border-radius: var(--border-radius);
+    border: none;
+    box-shadow: var(--box-shadow);
+    background-color: white;
+    margin-bottom: 1.5rem;
+  }
+  
+  .schedule-card-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: var(--dark-color);
+    display: flex;
+    align-items: center;
+  }
+  
+  .slots-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .slot-card {
+    border-radius: var(--border-radius);
+    border: none;
+    transition: transform 0.2s ease;
+  }
+  
+  .slot-card:hover {
+    transform: translateY(-2px);
+  }
+  
+  .available-slot {
+    border-left: 5px solid #28a745;
+  }
+  
+  .booked-slot {
+    border-left: 5px solid #dc3545;
+  }
+  
+  .slot-content {
+    display: flex;
+    align-items: center;
+  }
+  
+  .slot-time {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight: 500;
+  }
+  
+  .slot-icon {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+    color: var(--primary-color);
+  }
+  
+  .slot-status {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .slot-action {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .status-badge {
+    display: flex;
+    align-items: center;
+    padding: 6px 12px;
+    font-size: 0.85rem;
+  }
+  
+  .action-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 12px;
+    font-size: 0.85rem;
+    white-space: nowrap;
+  }
+  
+  .summary-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+  }
+  
+  .summary-item {
+    display: flex;
+    align-items: center;
+  }
+  
+  .summary-badge {
+    font-size: 1rem;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .no-date-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 50px 0;
+    color: #6c757d;
+  }
+  
+  .no-date-icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+    opacity: 0.6;
+  }
+  
+  .icon-margin {
+    margin-right: 0.5rem;
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 768px) {
+    .schedule-container {
+      padding: 10px;
+    }
+    
+    .page-title {
+      font-size: 1.3rem;
+    }
+    
+    .slot-card .card-body {
+      padding: 10px;
+    }
+    
+    .slot-icon {
+      font-size: 1rem;
+    }
+    
+    .action-button {
+      padding: 5px 10px;
+      font-size: 0.8rem;
+    }
+    
+    .summary-badge {
+      font-size: 0.9rem;
+      padding: 6px 12px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .slot-content {
+      flex-direction: column;
+      gap: 10px;
+    }
+    
+    .slot-time, .slot-status, .slot-action {
+      width: 100%;
+      max-width: 100%;
+      flex: 0 0 100%;
+    }
+    
+    .action-button {
+      width: 100%;
+    }
+  }
