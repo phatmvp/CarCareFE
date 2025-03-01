@@ -87,7 +87,8 @@ function Login() {
         }
 
         // Lưu token và thông tin người dùng
-        localStorage.setItem("token", data.token);
+        localStorage.setItem("accessToken", data.accessToken);
+        localStorage.setItem("refreshToken", data.refreshToken);
         localStorage.setItem("user", JSON.stringify(data.user));
 
         setAlert({

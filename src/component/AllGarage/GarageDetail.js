@@ -284,7 +284,7 @@ const GarageDetail = () => {
           onClick={handleGoBack}
           sx={{
             mr: 2,
-            bgcolor: "primary.main",
+            bgcolor: "#004d40",
             color: "white",
             "&:hover": { bgcolor: "primary.dark" },
           }}
@@ -294,7 +294,7 @@ const GarageDetail = () => {
         <Typography
           variant="h4"
           component="h1"
-          color="primary.main"
+          color="#004d40"
           fontWeight="bold"
         >
           {garage.name}
@@ -314,11 +314,11 @@ const GarageDetail = () => {
           <Grid container spacing={3}>
             <Grid item xs={12} md={8}>
               <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
-                <MapsHomeWork color="primary" sx={{ mr: 1 }} fontSize="large" />
+                <MapsHomeWork color="#004d40" sx={{ mr: 1 }} fontSize="large" />
                 <Typography
                   variant="h5"
                   component="h2"
-                  color="primary.main"
+                  color="#004d40"
                   fontWeight="medium"
                 >
                   {garage.name}
@@ -473,7 +473,7 @@ const GarageDetail = () => {
                   <List dense>
                     <ListItem>
                       <ListItemAvatar>
-                        <Avatar sx={{ bgcolor: "primary.main" }}>
+                        <Avatar sx={{ bgcolor: "#004d40" }}>
                           <Person />
                         </Avatar>
                       </ListItemAvatar>
@@ -484,7 +484,7 @@ const GarageDetail = () => {
                     </ListItem>
                     <ListItem>
                       <ListItemAvatar>
-                        <Avatar sx={{ bgcolor: "primary.main" }}>
+                        <Avatar sx={{ bgcolor: "#004d40" }}>
                           <Phone />
                         </Avatar>
                       </ListItemAvatar>
@@ -495,7 +495,7 @@ const GarageDetail = () => {
                     </ListItem>
                     <ListItem>
                       <ListItemAvatar>
-                        <Avatar sx={{ bgcolor: "primary.main" }}>
+                        <Avatar sx={{ bgcolor: "#004d40" }}>
                           <LocationOn />
                         </Avatar>
                       </ListItemAvatar>
@@ -506,7 +506,7 @@ const GarageDetail = () => {
                     </ListItem>
                     <ListItem>
                       <ListItemAvatar>
-                        <Avatar sx={{ bgcolor: "primary.main" }}>
+                        <Avatar sx={{ bgcolor: "#004d40" }}>
                           <AccessTime />
                         </Avatar>
                       </ListItemAvatar>
@@ -529,7 +529,7 @@ const GarageDetail = () => {
           </Typography>
           <TableContainer component={Paper} elevation={3}>
             <Table sx={{ minWidth: 650 }}>
-              <TableHead sx={{ bgcolor: "primary.main" }}>
+              <TableHead sx={{ bgcolor: "#004d40" }}>
                 <TableRow>
                   <TableCell sx={{ color: "white", fontWeight: "bold" }}>
                     Tên dịch vụ
@@ -714,9 +714,7 @@ const GarageDetail = () => {
               <React.Fragment key={review.id}>
                 <ListItem alignItems="flex-start" sx={{ px: 0 }}>
                   <ListItemAvatar>
-                    <Avatar sx={{ bgcolor: "primary.main" }}>
-                      {review.avatar}
-                    </Avatar>
+                    <Avatar sx={{ bgcolor: "#004d40" }}>{review.avatar}</Avatar>
                   </ListItemAvatar>
                   <ListItemText
                     primary={

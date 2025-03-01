@@ -33,14 +33,13 @@ import HomeIcon from "@mui/icons-material/Home";
 import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
 import { useNavigate } from "react-router-dom";
 
-// Styled components with black and white theme
 const PriceChip = styled(Chip)(({ theme }) => ({
-  backgroundColor: theme.palette.common.black,
+  backgroundColor: "#004d40",
   color: theme.palette.common.white,
   fontWeight: "bold",
   borderRadius: 4,
   "&:hover": {
-    backgroundColor: alpha(theme.palette.common.black, 0.9),
+    backgroundColor: alpha("#004d40", 0.9),
   },
 }));
 
@@ -57,7 +56,7 @@ const StyledCard = styled(Card)(({ theme }) => ({
 }));
 
 const CardHeaderStyled = styled(CardHeader)(({ theme }) => ({
-  backgroundColor: theme.palette.common.black,
+  backgroundColor: "#004d40",
   color: theme.palette.common.white,
   "& .MuiCardHeader-title": {
     fontSize: "1.2rem",
@@ -73,20 +72,20 @@ const ServiceHeading = styled(Box)(({ theme }) => ({
 }));
 
 const ViewButton = styled(Button)(({ theme }) => ({
-  backgroundColor: theme.palette.common.black,
+  backgroundColor: "#004d40",
   color: theme.palette.common.white,
   borderRadius: 4,
   fontWeight: "bold",
   padding: "8px 16px",
   transition: "all 0.3s ease",
   "&:hover": {
-    backgroundColor: alpha(theme.palette.common.black, 0.8),
+    backgroundColor: alpha("#004d40", 0.8),
     transform: "scale(1.05)",
   },
 }));
 
 const ServicePaper = styled(Paper)(({ theme }) => ({
-  border: `1px solid ${alpha(theme.palette.common.black, 0.2)}`,
+  border: `1px solid ${alpha("#004d40", 0.2)}`,
   borderRadius: 8,
   padding: theme.spacing(1.5),
   maxHeight: "200px",
@@ -95,10 +94,10 @@ const ServicePaper = styled(Paper)(({ theme }) => ({
     width: "6px",
   },
   "&::-webkit-scrollbar-track": {
-    backgroundColor: alpha(theme.palette.common.black, 0.05),
+    backgroundColor: alpha("#004d40", 0.05),
   },
   "&::-webkit-scrollbar-thumb": {
-    backgroundColor: alpha(theme.palette.common.black, 0.3),
+    backgroundColor: alpha("#004d40", 0.3),
     borderRadius: "3px",
   },
 }));
