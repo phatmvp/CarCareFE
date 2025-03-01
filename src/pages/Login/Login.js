@@ -41,6 +41,7 @@ function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
+
   const primaryColor = "#fff";
   const accentColor = "#004d40";
 
@@ -48,14 +49,63 @@ function Login() {
     setTabValue(newValue);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     if (tabValue === 0) {
-      console.log('Login - Email:', email, 'Password:', password);
+      const response = await fetch("http://localhost:5000/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Đăng nhập thất bại");
+      }
+
+      // Lưu token và thông tin người dùng
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("user", JSON.stringify(data.user));
+
+
+
+      // Chuyển hướng sau khi đăng nhập thành công
+      setTimeout(() => {
+        window.location.href = "/car-care/home";
+      }, 1500);
     } else {
-      console.log('Register - Full Name:', fullName, 'Phone:', phone, 'Email:', email, 'Password:', password);
+      const response = await fetch(
+        "http://localhost:5000/api/auth/register",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ fullName, phone, email, password }),
+        }
+      );
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Đăng ký thất bại");
+      }
+
+
+
+      // Chuyển sang tab đăng nhập sau khi đăng ký thành công
+      setTimeout(() => {
+        setTabValue(0);
+        setFullName("");
+        setPhone("");
+        setPassword("");
+        setConfirmPassword("");
+      }, 1500);
     }
-  };
+  }
 
   const togglePasswordVisibility = () => setShowPassword(!showPassword);
   const toggleConfirmPasswordVisibility = () => setShowConfirmPassword(!showConfirmPassword);
