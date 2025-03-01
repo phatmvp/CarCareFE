@@ -48,54 +48,101 @@ function Login() {
     setTabValue(newValue);
   };
 
+  const [loading, setLoading] = useState(false);
+  const [alert, setAlert] = useState({
+    show: false,
+    severity: "success",
+    message: "",
+  });
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (tabValue === 0) {
-      const response = await fetch("http://localhost:5000/api/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
+    if (tabValue === 1 && password !== confirmPassword) {
+      setAlert({
+        show: true,
+        severity: "error",
+        message: "Mật khẩu xác nhận không khớp",
       });
+      return;
+    }
 
-      const data = await response.json();
+    setLoading(true);
 
-      if (!response.ok) {
-        throw new Error(data.error || "Đăng nhập thất bại");
+    try {
+      if (tabValue === 0) {
+        // Xử lý đăng nhập
+        const response = await fetch("http://localhost:5000/api/auth/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email, password }),
+        });
+
+        const data = await response.json();
+        console.log(data);
+
+        if (!response.ok) {
+          throw new Error(data.error || "Đăng nhập thất bại");
+        }
+
+        // Lưu token và thông tin người dùng
+        localStorage.setItem("accessToken", data.accessToken);
+        localStorage.setItem("refreshToken", data.refreshToken);
+        localStorage.setItem("user", JSON.stringify(data.user));
+
+        setAlert({
+          show: true,
+          severity: "success",
+          message: "Đăng nhập thành công!",
+        });
+        // event.preventDefault();
+        // // Chuyển hướng sau khi đăng nhập thành công
+        // setTimeout(() => {
+        //   window.location.href = "/car-care/login/#";
+        // }, 1500);
+      } else {
+        // Xử lý đăng ký
+        const response = await fetch(
+          "http://localhost:5000/api/auth/register",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ fullName, phone, email, password }),
+          }
+        );
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.error || "Đăng ký thất bại");
+        }
+
+        setAlert({
+          show: true,
+          severity: "success",
+          message: "Đăng ký thành công! Vui lòng đăng nhập.",
+        });
+
+        // Chuyển sang tab đăng nhập sau khi đăng ký thành công
+        setTimeout(() => {
+          setTabValue(0);
+          setFullName("");
+          setPhone("");
+          setPassword("");
+          setConfirmPassword("");
+        }, 1500);
       }
-
-      // Lưu token và thông tin người dùng
-      localStorage.setItem("token", data.token);
-      localStorage.setItem("user", JSON.stringify(data.user));
-
-      // Chuyển hướng sau khi đăng nhập thành công
-      setTimeout(() => {
-        window.location.href = "/car-care/home";
-      }, 1500);
-    } else {
-      const response = await fetch("http://localhost:5000/api/auth/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ fullName, phone, email, password }),
+    } catch (error) {
+      setAlert({
+        show: true,
+        severity: "error",
+        message: error.message,
       });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.error || "Đăng ký thất bại");
-      }
-
-      // Chuyển sang tab đăng nhập sau khi đăng ký thành công
-      setTimeout(() => {
-        setTabValue(0);
-        setFullName("");
-        setPhone("");
-        setPassword("");
-        setConfirmPassword("");
-      }, 1500);
+    } finally {
+      setLoading(false);
     }
   };
 

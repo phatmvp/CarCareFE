@@ -21,22 +21,19 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import TargetIcon from '@mui/icons-material/TrackChanges';
-import VisibilityIcon from '@mui/icons-material/Visibility';
+import TargetIcon from "@mui/icons-material/TrackChanges";
+import VisibilityIcon from "@mui/icons-material/Visibility";
 import Header from "../../component/Header/Header";
+import Footer from "../../component/Footer/Footer";
+import { primaryColor, accentColor } from "../../config/constants";
 
 const HomePage = () => {
-  const primaryColor = "#fff";
-  const accentColor = "#004d40";
-
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
     <Box sx={{ backgroundColor: "#f5f5f7", overflowX: "hidden" }}>
-      <Header />
 
-      {/* Hero Section */}
       <Box
         sx={{
           position: "relative",
@@ -62,7 +59,10 @@ const HomePage = () => {
                   marginTop: isMobile ? "20px" : "0",
                 }}
               >
-                <Typography variant="h6" sx={{ fontWeight: 500, mb: 2, color: "#00796B" }}>
+                <Typography
+                  variant="h6"
+                  sx={{ fontWeight: 500, mb: 2, color: "#00796B" }}
+                >
                   KHÁM PHÁ CARCARE
                 </Typography>
                 <Typography
@@ -110,7 +110,10 @@ const HomePage = () => {
       {/* Service Cards */}
       <Box sx={{ py: 10, backgroundColor: "#f5f5f5" }}>
         <Container>
-          <Typography variant="h4" sx={{ fontWeight: 700, textAlign: "center", mb: 6 }}>
+          <Typography
+            variant="h4"
+            sx={{ fontWeight: 700, textAlign: "center", mb: 6 }}
+          >
             Đặt Lịch Nhanh
           </Typography>
           <Grid container spacing={4} justifyContent="center">
@@ -225,7 +228,15 @@ const HomePage = () => {
             </Grid>
             <Grid item xs={12} md={6}>
               <Box sx={{ px: { xs: 2, md: 4 }, mx: { xs: 0, md: 4 } }}>
-                <Typography variant="overline" sx={{ display: "block", fontWeight: "600", color: accentColor, mb: 2 }}>
+                <Typography
+                  variant="overline"
+                  sx={{
+                    display: "block",
+                    fontWeight: "600",
+                    color: accentColor,
+                    mb: 2,
+                  }}
+                >
                   Khám phá CarCare
                 </Typography>
                 <Typography
@@ -250,7 +261,14 @@ const HomePage = () => {
                 </Typography>
                 <Grid container spacing={4} sx={{ mb: 4 }}>
                   <Grid item xs={12} sm={6}>
-                    <Box sx={{ display: "flex", flexDirection: "column", alignItems: "start", textAlign: "start" }}>
+                    <Box
+                      sx={{
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "start",
+                        textAlign: "start",
+                      }}
+                    >
                       <Box
                         sx={{
                           width: 66,
@@ -266,17 +284,30 @@ const HomePage = () => {
                       >
                         <TargetIcon style={{ fontSize: 40 }} />
                       </Box>
-                      <Typography variant="h6" sx={{ fontWeight: "bold", mb: 1 }}>
+                      <Typography
+                        variant="h6"
+                        sx={{ fontWeight: "bold", mb: 1 }}
+                      >
                         Cam kết của chúng tôi
                       </Typography>
-                      <Typography variant="body2" sx={{ color: "text.secondary" }}>
+                      <Typography
+                        variant="body2"
+                        sx={{ color: "text.secondary" }}
+                      >
                         Chúng tôi đảm bảo kết nối liền mạch giữa bạn và những
                         dịch vụ chăm sóc xe tốt nhất.
                       </Typography>
                     </Box>
                   </Grid>
                   <Grid item xs={12} sm={6}>
-                    <Box sx={{ display: "flex", flexDirection: "column", alignItems: "start", textAlign: "start" }}>
+                    <Box
+                      sx={{
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "start",
+                        textAlign: "start",
+                      }}
+                    >
                       <Box
                         sx={{
                           width: 66,
@@ -292,10 +323,16 @@ const HomePage = () => {
                       >
                         <VisibilityIcon style={{ fontSize: 40 }} />
                       </Box>
-                      <Typography variant="h6" sx={{ fontWeight: "bold", mb: 1 }}>
+                      <Typography
+                        variant="h6"
+                        sx={{ fontWeight: "bold", mb: 1 }}
+                      >
                         Tầm nhìn của chúng tôi
                       </Typography>
-                      <Typography variant="body2" sx={{ color: "text.secondary" }}>
+                      <Typography
+                        variant="body2"
+                        sx={{ color: "text.secondary" }}
+                      >
                         Chúng tôi hướng đến việc giúp mọi người dễ dàng tiếp cận
                         các dịch vụ bảo dưỡng xe mà không gặp rắc rối.
                       </Typography>
@@ -323,7 +360,10 @@ const HomePage = () => {
       {/* Why Choose CarCare */}
       <Box sx={{ py: 10, backgroundColor: "#f5f5f7" }}>
         <Container>
-          <Typography variant="h4" sx={{ fontWeight: 700, textAlign: "center", mb: 6 }}>
+          <Typography
+            variant="h4"
+            sx={{ fontWeight: 700, textAlign: "center", mb: 6 }}
+          >
             Tại Sao Chọn CarCare?
           </Typography>
           <Grid container spacing={4}>
@@ -364,68 +404,6 @@ const HomePage = () => {
         </Container>
       </Box>
 
-      {/* Footer */}
-      <Box sx={{ py: 6, backgroundColor: accentColor, color: primaryColor }}>
-        <Container>
-          <Grid container spacing={4}>
-            <Grid item xs={12} md={6}>
-              <Typography variant="h5" sx={{ fontWeight: 800, mb: 2 }}>
-                CarCare
-              </Typography>
-              <Typography variant="body2" sx={{ mb: 3 }}>
-                Đặt lịch chăm sóc xe nhanh chóng và tiện lợi tại các gara uy
-                tín.
-              </Typography>
-              <Stack direction="row" spacing={2}>
-                {[FaTwitter, FaFacebook, FaInstagram].map((Icon, idx) => (
-                  <IconButton
-                    key={idx}
-                    sx={{
-                      color: primaryColor,
-                      "&:hover": { color: "#E6C774" },
-                    }}
-                  >
-                    <Icon />
-                  </IconButton>
-                ))}
-              </Stack>
-            </Grid>
-            <Grid item xs={12} md={3}>
-              <Typography variant="h6" sx={{ fontWeight: 700, mb: 2 }}>
-                Liên Kết Nhanh
-              </Typography>
-              <Stack spacing={1}>
-                {["Dịch Vụ", "Tìm Gara", "Đánh Giá", "Liên Hệ"].map((item) => (
-                  <Typography
-                    key={item}
-                    component="a"
-                    href="#"
-                    sx={{
-                      color: primaryColor,
-                      textDecoration: "none",
-                      "&:hover": { color: "#E6C774" },
-                    }}
-                  >
-                    {item}
-                  </Typography>
-                ))}
-              </Stack>
-            </Grid>
-            <Grid item xs={12} md={3}>
-              <Typography variant="h6" sx={{ fontWeight: 700, mb: 2 }}>
-                Liên Hệ
-              </Typography>
-              <Typography variant="body2">
-                Email: support@autobook.vn
-              </Typography>
-              <Typography variant="body2">Hotline: 1900 1234</Typography>
-            </Grid>
-          </Grid>
-          <Typography variant="body2" sx={{ textAlign: "center", mt: 4 }}>
-            © {new Date().getFullYear()} CarCare. All rights reserved.
-          </Typography>
-        </Container>
-      </Box>
     </Box>
   );
 };

@@ -1,8 +1,11 @@
-
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 
 import HomePage from "./pages/HomePage/HomePage";
-import Login from './pages/Login/Login';
+import Login from "./pages/Login/Login";
+import GaragesList from "./component/AllGarage/GaragesList";
+import GarageDetail from "./component/AllGarage/GarageDetail";
+import BookAppointment from "./pages/Book/BookAppointment";
+import Layout from "./component/Layout/Layout";
 function App() {
   return (
     <BrowserRouter>
@@ -11,15 +14,29 @@ function App() {
         <Route
           path="/car-care/home"
           element={
-            <HomePage />
+            <Layout>
+              <HomePage />
+            </Layout>
+          }
+        />
+        <Route path="/car-care/login" element={<Login />} />
+        <Route
+          path="/car-care/allGara"
+          element={
+            <Layout>
+              <GaragesList />
+            </Layout>
           }
         />
         <Route
-          path="/car-care/login"
+          path="/garages/:garageId"
           element={
-            <Login />
+            <Layout>
+              <GarageDetail />
+            </Layout>
           }
         />
+        <Route path="/book-appointment" element={<BookAppointment />} />
       </Routes>
     </BrowserRouter>
   );
