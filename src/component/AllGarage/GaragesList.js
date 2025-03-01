@@ -32,6 +32,8 @@ import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import HomeIcon from "@mui/icons-material/Home";
 import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
 import { useNavigate } from "react-router-dom";
+import Header from "./../Header/Header";
+import Footer from "../Footer/Footer";
 
 const PriceChip = styled(Chip)(({ theme }) => ({
   backgroundColor: "#004d40",
@@ -173,171 +175,181 @@ const GaragesList = () => {
   }
 
   return (
-    <Container maxWidth="lg" sx={{ mt: 4, mb: 8 }}>
-      {/* Breadcrumbs */}
-      <Breadcrumbs
-        separator={<NavigateNextIcon fontSize="small" />}
-        aria-label="breadcrumb"
-        sx={{ mb: 3, py: 1 }}
-      >
-        <Link
-          underline="hover"
-          color="inherit"
-          href="/"
-          sx={{ display: "flex", alignItems: "center" }}
+    <>
+    
+      <Container maxWidth="lg" sx={{ mt: 4, mb: 8 }}>
+        {/* Breadcrumbs */}
+        <Breadcrumbs
+          separator={<NavigateNextIcon fontSize="small" />}
+          aria-label="breadcrumb"
+          sx={{ mb: 3, py: 1 }}
         >
-          <HomeIcon sx={{ mr: 0.5 }} fontSize="small" />
-          Trang chủ
-        </Link>
+          <Link
+            underline="hover"
+            color="inherit"
+            href="/"
+            sx={{ display: "flex", alignItems: "center" }}
+          >
+            <HomeIcon sx={{ mr: 0.5 }} fontSize="small" />
+            Trang chủ
+          </Link>
+          <Typography
+            color="text.primary"
+            sx={{ display: "flex", alignItems: "center", fontWeight: "medium" }}
+          >
+            <DirectionsCarIcon sx={{ mr: 0.5 }} fontSize="small" />
+            Danh sách Gara
+          </Typography>
+        </Breadcrumbs>
+
         <Typography
-          color="text.primary"
-          sx={{ display: "flex", alignItems: "center", fontWeight: "medium" }}
+          variant="h4"
+          component="h1"
+          gutterBottom
+          align="center"
+          sx={{
+            mb: 5,
+            fontWeight: "bold",
+            position: "relative",
+            "&:after": {
+              content: '""',
+              display: "block",
+              width: "60px",
+              height: "3px",
+              backgroundColor: theme.palette.common.black,
+              margin: "12px auto 0",
+            },
+          }}
         >
-          <DirectionsCarIcon sx={{ mr: 0.5 }} fontSize="small" />
-          Danh sách Gara
+          DANH SÁCH GARA
         </Typography>
-      </Breadcrumbs>
 
-      <Typography
-        variant="h4"
-        component="h1"
-        gutterBottom
-        align="center"
-        sx={{
-          mb: 5,
-          fontWeight: "bold",
-          position: "relative",
-          "&:after": {
-            content: '""',
-            display: "block",
-            width: "60px",
-            height: "3px",
-            backgroundColor: theme.palette.common.black,
-            margin: "12px auto 0",
-          },
-        }}
-      >
-        DANH SÁCH GARA
-      </Typography>
-
-      <Grid container spacing={3}>
-        {garages.map((garageOwner) => (
-          <Grid item xs={12} md={6} lg={4} key={garageOwner._id}>
-            <StyledCard elevation={2}>
-              <CardHeaderStyled
-                title={garageOwner.garage.name}
-                titleTypographyProps={{ fontWeight: "bold" }}
-              />
-              <CardContent sx={{ flexGrow: 1, px: 3, pt: 2.5 }}>
-                <InfoBox>
-                  <PersonIcon sx={{ color: theme.palette.common.black }} />
-                  <Typography variant="body1">
-                    <strong>Chủ gara:</strong> {garageOwner.name}
-                  </Typography>
-                </InfoBox>
-
-                <InfoBox>
-                  <LocationOnIcon sx={{ color: theme.palette.common.black }} />
-                  <Typography variant="body1" sx={{ flex: 1 }}>
-                    <strong>Địa chỉ:</strong> {garageOwner.garage.address}
-                  </Typography>
-                </InfoBox>
-
-                <InfoBox>
-                  <PhoneIcon sx={{ color: theme.palette.common.black }} />
-                  <Typography variant="body1">
-                    <strong>Số điện thoại:</strong> {garageOwner.garage.phone}
-                  </Typography>
-                </InfoBox>
-
-                <InfoBox>
-                  <AccessTimeIcon sx={{ color: theme.palette.common.black }} />
-                  <Typography variant="body1">
-                    <strong>Giờ làm việc:</strong>{" "}
-                    {garageOwner.garage.workingHours.open} -{" "}
-                    {garageOwner.garage.workingHours.close}
-                  </Typography>
-                </InfoBox>
-
-                <Divider
-                  sx={{
-                    my: 2.5,
-                    borderColor: alpha(theme.palette.common.black, 0.1),
-                  }}
+        <Grid container spacing={3}>
+          {garages.map((garageOwner) => (
+            <Grid item xs={12} md={6} lg={4} key={garageOwner._id}>
+              <StyledCard elevation={2}>
+                <CardHeaderStyled
+                  title={garageOwner.garage.name}
+                  titleTypographyProps={{ fontWeight: "bold" }}
                 />
+                <CardContent sx={{ flexGrow: 1, px: 3, pt: 2.5 }}>
+                  <InfoBox>
+                    <PersonIcon sx={{ color: theme.palette.common.black }} />
+                    <Typography variant="body1">
+                      <strong>Chủ gara:</strong> {garageOwner.name}
+                    </Typography>
+                  </InfoBox>
 
-                <ServiceHeading>
-                  <BuildIcon
-                    sx={{ mr: 1.5, color: theme.palette.common.black }}
-                  />
-                  <Typography
-                    variant="h6"
+                  <InfoBox>
+                    <LocationOnIcon
+                      sx={{ color: theme.palette.common.black }}
+                    />
+                    <Typography variant="body1" sx={{ flex: 1 }}>
+                      <strong>Địa chỉ:</strong> {garageOwner.garage.address}
+                    </Typography>
+                  </InfoBox>
+
+                  <InfoBox>
+                    <PhoneIcon sx={{ color: theme.palette.common.black }} />
+                    <Typography variant="body1">
+                      <strong>Số điện thoại:</strong> {garageOwner.garage.phone}
+                    </Typography>
+                  </InfoBox>
+
+                  <InfoBox>
+                    <AccessTimeIcon
+                      sx={{ color: theme.palette.common.black }}
+                    />
+                    <Typography variant="body1">
+                      <strong>Giờ làm việc:</strong>{" "}
+                      {garageOwner.garage.workingHours.open} -{" "}
+                      {garageOwner.garage.workingHours.close}
+                    </Typography>
+                  </InfoBox>
+
+                  <Divider
                     sx={{
-                      fontWeight: "bold",
-                      color: theme.palette.common.black,
+                      my: 2.5,
+                      borderColor: alpha(theme.palette.common.black, 0.1),
                     }}
-                  >
-                    Dịch vụ
-                  </Typography>
-                </ServiceHeading>
+                  />
 
-                <ServicePaper>
-                  <List disablePadding>
-                    {garageOwner.garage.services.map((service, index) => (
-                      <React.Fragment key={index}>
-                        {index > 0 && (
-                          <Divider
-                            component="li"
-                            sx={{
-                              borderColor: alpha(
-                                theme.palette.common.black,
-                                0.1
-                              ),
-                            }}
-                          />
-                        )}
-                        <ListItem sx={{ px: 1, py: 1.5 }}>
-                          <ListItemText
-                            primary={
-                              <Box
-                                sx={{
-                                  display: "flex",
-                                  alignItems: "center",
-                                  justifyContent: "space-between",
-                                }}
-                              >
-                                <Typography
-                                  variant="body1"
-                                  sx={{ fontWeight: 500 }}
+                  <ServiceHeading>
+                    <BuildIcon
+                      sx={{ mr: 1.5, color: theme.palette.common.black }}
+                    />
+                    <Typography
+                      variant="h6"
+                      sx={{
+                        fontWeight: "bold",
+                        color: theme.palette.common.black,
+                      }}
+                    >
+                      Dịch vụ
+                    </Typography>
+                  </ServiceHeading>
+
+                  <ServicePaper>
+                    <List disablePadding>
+                      {garageOwner.garage.services.map((service, index) => (
+                        <React.Fragment key={index}>
+                          {index > 0 && (
+                            <Divider
+                              component="li"
+                              sx={{
+                                borderColor: alpha(
+                                  theme.palette.common.black,
+                                  0.1
+                                ),
+                              }}
+                            />
+                          )}
+                          <ListItem sx={{ px: 1, py: 1.5 }}>
+                            <ListItemText
+                              primary={
+                                <Box
+                                  sx={{
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "space-between",
+                                  }}
                                 >
-                                  {service.name}
-                                </Typography>
-                                <PriceChip
-                                  label={`${service.price.toLocaleString()} VND`}
-                                  size="small"
-                                />
-                              </Box>
-                            }
-                          />
-                        </ListItem>
-                      </React.Fragment>
-                    ))}
-                  </List>
-                </ServicePaper>
-                <Box sx={{ display: "flex", justifyContent: "center", mt: 3 }}>
-                  <ViewButton
-                    onClick={() => handleViewDetail(garageOwner.garage._id)}
-                    startIcon={<NavigateNextIcon />}
+                                  <Typography
+                                    variant="body1"
+                                    sx={{ fontWeight: 500 }}
+                                  >
+                                    {service.name}
+                                  </Typography>
+                                  <PriceChip
+                                    label={`${service.price.toLocaleString()} VND`}
+                                    size="small"
+                                  />
+                                </Box>
+                              }
+                            />
+                          </ListItem>
+                        </React.Fragment>
+                      ))}
+                    </List>
+                  </ServicePaper>
+                  <Box
+                    sx={{ display: "flex", justifyContent: "center", mt: 3 }}
                   >
-                    Xem chi tiết
-                  </ViewButton>
-                </Box>
-              </CardContent>
-            </StyledCard>
-          </Grid>
-        ))}
-      </Grid>
-    </Container>
+                    <ViewButton
+                      onClick={() => handleViewDetail(garageOwner.garage._id)}
+                      startIcon={<NavigateNextIcon />}
+                    >
+                      Xem chi tiết
+                    </ViewButton>
+                  </Box>
+                </CardContent>
+              </StyledCard>
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
+     
+    </>
   );
 };
 

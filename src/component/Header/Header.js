@@ -1,5 +1,4 @@
-import React from "react";
-
+import React, { memo } from "react";
 import { FaTwitter, FaFacebook, FaInstagram } from "react-icons/fa";
 import {
   Box,
@@ -12,8 +11,9 @@ import {
   useTheme,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { primaryColor, accentColor } from "../../config/constants";
 
-export default function Header() {
+const Header = memo(() => {
   const navigate = useNavigate();
 
   const handelLogin = () => {
@@ -29,8 +29,6 @@ export default function Header() {
       navigate("/car-care/allGara");
     }
   };
-  const primaryColor = "#fff";
-  const accentColor = "#004d40";
   const menuItems = ["DỊCH VỤ", "TÌM GARA", "CỨU HỘ", "LIÊN HỆ"];
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
@@ -91,7 +89,7 @@ export default function Header() {
             <Typography
               variant="h5"
               component="a"
-              href="#"
+              href="/car-care/home"
               sx={{
                 fontWeight: 900,
                 color: accentColor,
@@ -189,4 +187,5 @@ export default function Header() {
       </Box>
     </div>
   );
-}
+});
+export default Header;
