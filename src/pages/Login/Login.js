@@ -28,7 +28,6 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import LocalOfferIcon from "@mui/icons-material/LocalOffer";
 import GoogleIcon from "@mui/icons-material/Google";
 import FacebookIcon from "@mui/icons-material/Facebook";
-
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
@@ -38,16 +37,9 @@ function Login() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [fullName, setFullName] = useState("");
   const [phone, setPhone] = useState("");
-
   const [tabValue, setTabValue] = useState(0);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [alert, setAlert] = useState({
-    show: false,
-    severity: "success",
-    message: "",
-  });
 
   const primaryColor = "#fff";
   const accentColor = "#004d40";
@@ -56,7 +48,15 @@ function Login() {
     setTabValue(newValue);
   };
 
+  const [loading, setLoading] = useState(false);
+  const [alert, setAlert] = useState({
+    show: false,
+    severity: "success",
+    message: "",
+  });
+
   const handleSubmit = async (event) => {
+    event.preventDefault();
     if (tabValue === 1 && password !== confirmPassword) {
       setAlert({
         show: true,
@@ -95,7 +95,7 @@ function Login() {
           severity: "success",
           message: "Đăng nhập thành công!",
         });
-        event.preventDefault();
+        // event.preventDefault();
         // // Chuyển hướng sau khi đăng nhập thành công
         // setTimeout(() => {
         //   window.location.href = "/car-care/login/#";
@@ -179,10 +179,8 @@ function Login() {
             elevation={24}
             sx={{
               borderRadius: { xs: 4, md: 6 },
-
               backdropFilter: "blur(20px)",
               border: "1px solid rgba(255, 255, 255, 0.1)",
-
               boxShadow: `0 30px 70px rgba(0, 0, 0, 0.5), 0 10px 20px ${primaryColor}40`,
               position: "relative",
               overflow: "hidden",
@@ -192,7 +190,6 @@ function Login() {
                 top: 0,
                 left: 0,
                 right: 0,
-
                 height: "5px",
                 background: `linear-gradient(90deg, ${accentColor} 0%)`,
               },
@@ -205,9 +202,8 @@ function Login() {
                 xs={12}
                 md={7}
                 sx={{
-                  display: { xs: "none", md: "flex" }, // Ẩn trên mobile
-                  background: `linear-gradient(135deg, ${primaryColor} 0%)`,
-
+                  display: { xs: "none", md: "flex" },
+                  background: `linear-gradient(135deg, #004d40 0%, #002e2a 100%)`,
                   p: { sm: 4, md: 6 },
                   flexDirection: "column",
                   justifyContent: "center",
@@ -220,10 +216,8 @@ function Login() {
                     left: 0,
                     right: 0,
                     bottom: 0,
-
                     backgroundSize: "cover",
                     backgroundPosition: "center",
-
                     opacity: 0.05,
                     zIndex: 0,
                   },
@@ -288,10 +282,9 @@ function Login() {
                     sx={{
                       fontWeight: 700,
                       mb: 1,
-
                       letterSpacing: "-0.5px",
                       fontSize: { xs: "1.5rem", sm: "1.8rem", md: "2.5rem" },
-                      color: "#000",
+                      color: "white",
                     }}
                   >
                     Đặt lịch gara ô tô
@@ -316,9 +309,8 @@ function Login() {
                       mb: { xs: 3, md: 4 },
                       fontSize: { xs: "0.9rem", md: "1.1rem" },
                       lineHeight: 1.6,
-
                       maxWidth: "90%",
-                      color: "#757575",
+                      color: "#cccccc",
                     }}
                   >
                     Kết nối với hàng trăm gara uy tín trên toàn quốc, giúp bạn
@@ -357,7 +349,7 @@ function Login() {
                             sx={{
                               fontWeight: 600,
                               mb: 0.5,
-                              color: "#000000",
+                              color: "white",
                               fontSize: { xs: "0.9rem", md: "1.1rem" },
                             }}
                           >
@@ -393,7 +385,7 @@ function Login() {
                             sx={{
                               fontWeight: 600,
                               mb: 0.5,
-                              color: "#000000",
+                              color: "white",
                               fontSize: { xs: "0.9rem", md: "1.1rem" },
                             }}
                           >
@@ -429,7 +421,7 @@ function Login() {
                             sx={{
                               fontWeight: 600,
                               mb: 0.5,
-                              color: "#000000",
+                              color: "white",
                               fontSize: { xs: "0.9rem", md: "1.1rem" },
                             }}
                           >
@@ -465,7 +457,7 @@ function Login() {
                             sx={{
                               fontWeight: 600,
                               mb: 0.5,
-                              color: "#000",
+                              color: "white",
                               fontSize: { xs: "0.9rem", md: "1.1rem" },
                             }}
                           >
@@ -494,7 +486,6 @@ function Login() {
                         backgroundColor: accentColor,
                         color: primaryColor,
                         fontWeight: 700,
-
                         fontSize: { xs: "0.9rem", md: "1rem" },
                         textTransform: "none",
                         "&:hover": {
@@ -519,13 +510,11 @@ function Login() {
                         color: "white",
                         borderWidth: 2,
                         fontWeight: 600,
-
                         fontSize: { xs: "0.9rem", md: "1rem" },
                         textTransform: "none",
                         "&:hover": {
-                          backgroundColor: "#003630",
-                          transform: "scale(1.05)",
                           backgroundColor: "rgba(255,255,255,0.05)",
+                          transform: "scale(1.05)",
                         },
                         transition: "all 0.3s ease",
                       }}
@@ -545,10 +534,8 @@ function Login() {
                   p: { xs: 3, sm: 4, md: 5 },
                   position: "relative",
                   zIndex: 1,
-
                   display: "flex",
                   alignItems: "center",
-
                   borderRadius: { xs: 4, md: 6 },
                   borderTopLeftRadius: { xs: 4, md: 0 },
                   borderTopRightRadius: { xs: 4, md: 6 },
@@ -1050,10 +1037,8 @@ function Login() {
                       variant="contained"
                       sx={{
                         py: { xs: 1.2, md: 1.8 },
-
                         borderRadius: "15px",
-                        background: `linear-gradient(45deg, ${accentColor} 100%)`,
-
+                        background: accentColor,
                         color: primaryColor,
                         fontSize: { xs: "0.9rem", md: "1rem" },
                         fontWeight: 600,
