@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   Button,
   TextField,
@@ -15,32 +15,31 @@ import {
   Divider,
   IconButton,
   Chip,
-  InputAdornment
-} from '@mui/material';
-import PersonIcon from '@mui/icons-material/Person';
-import PhoneIcon from '@mui/icons-material/Phone';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import EmailIcon from '@mui/icons-material/Email';
-import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
-import SpeedIcon from '@mui/icons-material/Speed';
-import CleaningServicesIcon from '@mui/icons-material/CleaningServices';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import LocalOfferIcon from '@mui/icons-material/LocalOffer';
-import GoogleIcon from '@mui/icons-material/Google';
-import FacebookIcon from '@mui/icons-material/Facebook';
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
+  InputAdornment,
+} from "@mui/material";
+import PersonIcon from "@mui/icons-material/Person";
+import PhoneIcon from "@mui/icons-material/Phone";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import EmailIcon from "@mui/icons-material/Email";
+import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
+import SpeedIcon from "@mui/icons-material/Speed";
+import CleaningServicesIcon from "@mui/icons-material/CleaningServices";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import LocalOfferIcon from "@mui/icons-material/LocalOffer";
+import GoogleIcon from "@mui/icons-material/Google";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
 function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [fullName, setFullName] = useState('');
-  const [phone, setPhone] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [fullName, setFullName] = useState("");
+  const [phone, setPhone] = useState("");
   const [tabValue, setTabValue] = useState(0);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-
 
   const primaryColor = "#fff";
   const accentColor = "#004d40";
@@ -70,31 +69,24 @@ function Login() {
       localStorage.setItem("token", data.token);
       localStorage.setItem("user", JSON.stringify(data.user));
 
-
-
       // Chuyển hướng sau khi đăng nhập thành công
       setTimeout(() => {
         window.location.href = "/car-care/home";
       }, 1500);
     } else {
-      const response = await fetch(
-        "http://localhost:5000/api/auth/register",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ fullName, phone, email, password }),
-        }
-      );
+      const response = await fetch("http://localhost:5000/api/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ fullName, phone, email, password }),
+      });
 
       const data = await response.json();
 
       if (!response.ok) {
         throw new Error(data.error || "Đăng ký thất bại");
       }
-
-
 
       // Chuyển sang tab đăng nhập sau khi đăng ký thành công
       setTimeout(() => {
@@ -105,33 +97,34 @@ function Login() {
         setConfirmPassword("");
       }, 1500);
     }
-  }
+  };
 
   const togglePasswordVisibility = () => setShowPassword(!showPassword);
-  const toggleConfirmPasswordVisibility = () => setShowConfirmPassword(!showConfirmPassword);
+  const toggleConfirmPasswordVisibility = () =>
+    setShowConfirmPassword(!showConfirmPassword);
 
   return (
     <Box
       sx={{
-        minHeight: '100vh',
+        minHeight: "100vh",
         background: `#f5f5f5`,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        position: 'relative',
-        overflow: 'hidden',
-        '&::before': {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        position: "relative",
+        overflow: "hidden",
+        "&::before": {
           content: '""',
-          position: 'absolute',
-          width: '200%',
-          height: '200%',
-          top: '-50%',
-          left: '-50%',
+          position: "absolute",
+          width: "200%",
+          height: "200%",
+          top: "-50%",
+          left: "-50%",
           backgroundImage: `radial-gradient(circle, ${accentColor}20 1px, transparent 1px)`,
-          backgroundSize: { xs: '20px 20px', md: '30px 30px' },
-          transform: 'rotate(15deg)',
+          backgroundSize: { xs: "20px 20px", md: "30px 30px" },
+          transform: "rotate(15deg)",
           opacity: 0.2,
-        }
+        },
       }}
     >
       <Container maxWidth="lg">
@@ -140,71 +133,85 @@ function Login() {
             elevation={24}
             sx={{
               borderRadius: { xs: 4, md: 6 },
-              backdropFilter: 'blur(20px)',
-              border: '1px solid rgba(255, 255, 255, 0.1)',
+              backdropFilter: "blur(20px)",
+              border: "1px solid rgba(255, 255, 255, 0.1)",
               boxShadow: `0 30px 70px rgba(0, 0, 0, 0.5), 0 10px 20px ${primaryColor}40`,
-              position: 'relative',
-              overflow: 'hidden',
-              '&::before': {
+              position: "relative",
+              overflow: "hidden",
+              "&::before": {
                 content: '""',
-                position: 'absolute',
+                position: "absolute",
                 top: 0,
                 left: 0,
                 right: 0,
-                height: '5px',
+                height: "5px",
                 background: `linear-gradient(90deg, ${accentColor} 0%)`,
-              }
+              },
             }}
           >
-            <Grid container direction={{ xs: 'column', md: 'row' }}>
+            <Grid container direction={{ xs: "column", md: "row" }}>
               {/* Left side - Features (Hidden on mobile) */}
-              <Grid item xs={12} md={7}
+              <Grid
+                item
+                xs={12}
+                md={7}
                 sx={{
-                  display: { xs: 'none', md: 'flex' },
+                  display: { xs: "none", md: "flex" },
                   background: `linear-gradient(135deg, #004d40 0%, #002e2a 100%)`,
                   p: { sm: 4, md: 6 },
-                  flexDirection: 'column',
-                  justifyContent: 'center',
-                  position: 'relative',
-                  color: '#F5F5F5',
-                  '&::before': {
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  position: "relative",
+                  color: "#F5F5F5",
+                  "&::before": {
                     content: '""',
-                    position: 'absolute',
+                    position: "absolute",
                     top: 0,
                     left: 0,
                     right: 0,
                     bottom: 0,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
                     opacity: 0.05,
-                    zIndex: 0
+                    zIndex: 0,
                   },
                   borderTopLeftRadius: { md: 6 },
-                  borderBottomLeftRadius: { md: 6 }
+                  borderBottomLeftRadius: { md: 6 },
                 }}
               >
-                <Box sx={{ position: 'relative', zIndex: 1 }}>
-                  <Box sx={{ display: 'flex', alignItems: 'center', mb: { xs: 2, md: 3 } }}>
+                <Box sx={{ position: "relative", zIndex: 1 }}>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      mb: { xs: 2, md: 3 },
+                    }}
+                  >
                     <Avatar
                       sx={{
-                        bgcolor: 'white',
+                        bgcolor: "white",
                         width: { xs: 48, md: 60 },
                         height: { xs: 48, md: 60 },
-                        boxShadow: '0 8px 24px rgba(0, 0, 0, 0.3)',
-                        mr: 2
+                        boxShadow: "0 8px 24px rgba(0, 0, 0, 0.3)",
+                        mr: 2,
                       }}
                     >
-                      <DirectionsCarIcon sx={{ fontSize: { xs: '1.5rem', md: '2rem' }, color: accentColor }} />
+                      <DirectionsCarIcon
+                        sx={{
+                          fontSize: { xs: "1.5rem", md: "2rem" },
+                          color: accentColor,
+                        }}
+                      />
                     </Avatar>
                     <Typography
                       component="h1"
                       variant="h3"
                       sx={{
                         fontWeight: 800,
-                        letterSpacing: '-0.5px',
-                        textShadow: '0 2px 10px rgba(0,0,0,0.3)',
-                        color: 'white',
-                        fontSize: { xs: '2rem', md: '3rem' }
+                        letterSpacing: "-0.5px",
+                        textShadow: "0 2px 10px rgba(0,0,0,0.3)",
+                        color: "white",
+                        fontSize: { xs: "2rem", md: "3rem" },
                       }}
                     >
                       CarCare
@@ -219,8 +226,8 @@ function Login() {
                       fontWeight: 700,
                       mb: 2,
                       px: 1,
-                      fontSize: { xs: '0.7rem', md: '0.8rem' },
-                      '& .MuiChip-label': { px: 1 }
+                      fontSize: { xs: "0.7rem", md: "0.8rem" },
+                      "& .MuiChip-label": { px: 1 },
                     }}
                   />
 
@@ -229,9 +236,9 @@ function Login() {
                     sx={{
                       fontWeight: 700,
                       mb: 1,
-                      letterSpacing: '-0.5px',
-                      fontSize: { xs: '1.5rem', sm: '1.8rem', md: '2.5rem' },
-                      color: 'white'
+                      letterSpacing: "-0.5px",
+                      fontSize: { xs: "1.5rem", sm: "1.8rem", md: "2.5rem" },
+                      color: "white",
                     }}
                   >
                     Đặt lịch gara ô tô
@@ -242,9 +249,9 @@ function Login() {
                     sx={{
                       fontWeight: 700,
                       mb: { xs: 2, md: 3 },
-                      color: 'white',
-                      textShadow: '0 2px 10px rgba(0,0,0,0.2)',
-                      fontSize: { xs: '1.5rem', sm: '1.8rem', md: '2.5rem' }
+                      color: "white",
+                      textShadow: "0 2px 10px rgba(0,0,0,0.2)",
+                      fontSize: { xs: "1.5rem", sm: "1.8rem", md: "2.5rem" },
                     }}
                   >
                     Dễ dàng & Tiện lợi
@@ -254,31 +261,52 @@ function Login() {
                     variant="body1"
                     sx={{
                       mb: { xs: 3, md: 4 },
-                      fontSize: { xs: '0.9rem', md: '1.1rem' },
+                      fontSize: { xs: "0.9rem", md: "1.1rem" },
                       lineHeight: 1.6,
-                      maxWidth: '90%',
-                      color: '#cccccc'
+                      maxWidth: "90%",
+                      color: "#cccccc",
                     }}
                   >
-                    Kết nối với hàng trăm gara uy tín trên toàn quốc, giúp bạn dễ dàng đặt lịch bảo dưỡng, sửa chữa hoặc chăm sóc xe chỉ trong vài bước.
+                    Kết nối với hàng trăm gara uy tín trên toàn quốc, giúp bạn
+                    dễ dàng đặt lịch bảo dưỡng, sửa chữa hoặc chăm sóc xe chỉ
+                    trong vài bước.
                   </Typography>
 
-                  <Grid container spacing={{ xs: 2, md: 3 }} sx={{ mb: { xs: 3, md: 4 } }}>
+                  <Grid
+                    container
+                    spacing={{ xs: 2, md: 3 }}
+                    sx={{ mb: { xs: 3, md: 4 } }}
+                  >
                     <Grid item xs={6} sm={6}>
-                      <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+                      <Box
+                        sx={{ display: "flex", alignItems: "center", mb: 2 }}
+                      >
                         <Avatar
                           sx={{
-                            bgcolor: 'white',
+                            bgcolor: "white",
                             mr: 1.5,
                             width: { xs: 36, md: 40 },
                             height: { xs: 36, md: 40 },
-                            boxShadow: '0 4px 12px rgba(0,0,0,0.2)'
+                            boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
                           }}
                         >
-                          <SpeedIcon sx={{ color: accentColor, fontSize: { xs: '1.2rem', md: '1.5rem' } }} />
+                          <SpeedIcon
+                            sx={{
+                              color: accentColor,
+                              fontSize: { xs: "1.2rem", md: "1.5rem" },
+                            }}
+                          />
                         </Avatar>
                         <Box>
-                          <Typography variant="h6" sx={{ fontWeight: 600, mb: 0.5, color: 'white', fontSize: { xs: '0.9rem', md: '1.1rem' } }}>
+                          <Typography
+                            variant="h6"
+                            sx={{
+                              fontWeight: 600,
+                              mb: 0.5,
+                              color: "white",
+                              fontSize: { xs: "0.9rem", md: "1.1rem" },
+                            }}
+                          >
                             Đặt lịch nhanh chóng
                           </Typography>
                         </Box>
@@ -286,20 +314,35 @@ function Login() {
                     </Grid>
 
                     <Grid item xs={6} sm={6}>
-                      <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+                      <Box
+                        sx={{ display: "flex", alignItems: "center", mb: 2 }}
+                      >
                         <Avatar
                           sx={{
-                            bgcolor: 'white',
+                            bgcolor: "white",
                             mr: 1.5,
                             width: { xs: 36, md: 40 },
                             height: { xs: 36, md: 40 },
-                            boxShadow: '0 4px 12px rgba(0,0,0,0.2)'
+                            boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
                           }}
                         >
-                          <CleaningServicesIcon sx={{ color: accentColor, fontSize: { xs: '1.2rem', md: '1.5rem' } }} />
+                          <CleaningServicesIcon
+                            sx={{
+                              color: accentColor,
+                              fontSize: { xs: "1.2rem", md: "1.5rem" },
+                            }}
+                          />
                         </Avatar>
                         <Box>
-                          <Typography variant="h6" sx={{ fontWeight: 600, mb: 0.5, color: 'white', fontSize: { xs: '0.9rem', md: '1.1rem' } }}>
+                          <Typography
+                            variant="h6"
+                            sx={{
+                              fontWeight: 600,
+                              mb: 0.5,
+                              color: "white",
+                              fontSize: { xs: "0.9rem", md: "1.1rem" },
+                            }}
+                          >
                             Nhiều dịch vụ đa dạng
                           </Typography>
                         </Box>
@@ -307,20 +350,35 @@ function Login() {
                     </Grid>
 
                     <Grid item xs={6} sm={6}>
-                      <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+                      <Box
+                        sx={{ display: "flex", alignItems: "center", mb: 2 }}
+                      >
                         <Avatar
                           sx={{
-                            bgcolor: 'white',
+                            bgcolor: "white",
                             mr: 1.5,
                             width: { xs: 36, md: 40 },
                             height: { xs: 36, md: 40 },
-                            boxShadow: '0 4px 12px rgba(0,0,0,0.2)'
+                            boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
                           }}
                         >
-                          <CheckCircleIcon sx={{ color: accentColor, fontSize: { xs: '1.2rem', md: '1.5rem' } }} />
+                          <CheckCircleIcon
+                            sx={{
+                              color: accentColor,
+                              fontSize: { xs: "1.2rem", md: "1.5rem" },
+                            }}
+                          />
                         </Avatar>
                         <Box>
-                          <Typography variant="h6" sx={{ fontWeight: 600, mb: 0.5, color: 'white', fontSize: { xs: '0.9rem', md: '1.1rem' } }}>
+                          <Typography
+                            variant="h6"
+                            sx={{
+                              fontWeight: 600,
+                              mb: 0.5,
+                              color: "white",
+                              fontSize: { xs: "0.9rem", md: "1.1rem" },
+                            }}
+                          >
                             Gara uy tín
                           </Typography>
                         </Box>
@@ -328,20 +386,35 @@ function Login() {
                     </Grid>
 
                     <Grid item xs={6} sm={6}>
-                      <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+                      <Box
+                        sx={{ display: "flex", alignItems: "center", mb: 2 }}
+                      >
                         <Avatar
                           sx={{
-                            bgcolor: 'white',
+                            bgcolor: "white",
                             mr: 1.5,
                             width: { xs: 36, md: 40 },
                             height: { xs: 36, md: 40 },
-                            boxShadow: '0 4px 12px rgba(0,0,0,0.2)'
+                            boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
                           }}
                         >
-                          <LocalOfferIcon sx={{ color: accentColor, fontSize: { xs: '1.2rem', md: '1.5rem' } }} />
+                          <LocalOfferIcon
+                            sx={{
+                              color: accentColor,
+                              fontSize: { xs: "1.2rem", md: "1.5rem" },
+                            }}
+                          />
                         </Avatar>
                         <Box>
-                          <Typography variant="h6" sx={{ fontWeight: 600, mb: 0.5, color: 'white', fontSize: { xs: '0.9rem', md: '1.1rem' } }}>
+                          <Typography
+                            variant="h6"
+                            sx={{
+                              fontWeight: 600,
+                              mb: 0.5,
+                              color: "white",
+                              fontSize: { xs: "0.9rem", md: "1.1rem" },
+                            }}
+                          >
                             So sánh giá cả
                           </Typography>
                         </Box>
@@ -349,30 +422,32 @@ function Login() {
                     </Grid>
                   </Grid>
 
-                  <Box sx={{
-                    display: 'flex',
-                    gap: 2,
-                    flexWrap: 'wrap',
-                    mt: 2,
-                    justifyContent: { xs: 'center', md: 'flex-start' }
-                  }}>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      gap: 2,
+                      flexWrap: "wrap",
+                      mt: 2,
+                      justifyContent: { xs: "center", md: "flex-start" },
+                    }}
+                  >
                     <Button
                       variant="contained"
                       sx={{
                         py: { xs: 1.2, md: 1.8 },
                         px: { xs: 3, md: 4 },
-                        borderRadius: '50px',
+                        borderRadius: "50px",
                         backgroundColor: accentColor,
                         color: primaryColor,
                         fontWeight: 700,
-                        fontSize: { xs: '0.9rem', md: '1rem' },
-                        textTransform: 'none',
-                        '&:hover': {
+                        fontSize: { xs: "0.9rem", md: "1rem" },
+                        textTransform: "none",
+                        "&:hover": {
                           backgroundColor: "#003630",
                           transform: "scale(1.05)",
                           boxShadow: `0 10px 25px ${accentColor}80`,
                         },
-                        transition: 'all 0.3s ease',
+                        transition: "all 0.3s ease",
                         boxShadow: `0 6px 15px ${accentColor}60`,
                       }}
                     >
@@ -384,18 +459,18 @@ function Login() {
                       sx={{
                         py: { xs: 1.2, md: 1.8 },
                         px: { xs: 3, md: 4 },
-                        borderRadius: '50px',
+                        borderRadius: "50px",
                         borderColor: accentColor,
-                        color: 'white',
+                        color: "white",
                         borderWidth: 2,
                         fontWeight: 600,
-                        fontSize: { xs: '0.9rem', md: '1rem' },
-                        textTransform: 'none',
-                        '&:hover': {
-                          backgroundColor: 'rgba(255,255,255,0.05)',
+                        fontSize: { xs: "0.9rem", md: "1rem" },
+                        textTransform: "none",
+                        "&:hover": {
+                          backgroundColor: "rgba(255,255,255,0.05)",
                           transform: "scale(1.05)",
                         },
-                        transition: 'all 0.3s ease',
+                        transition: "all 0.3s ease",
                       }}
                     >
                       Xem tất cả dịch vụ
@@ -405,27 +480,36 @@ function Login() {
               </Grid>
 
               {/* Right side - Login/Register form */}
-              <Grid item xs={12} md={5}
+              <Grid
+                item
+                xs={12}
+                md={5}
                 sx={{
                   p: { xs: 3, sm: 4, md: 5 },
-                  position: 'relative',
+                  position: "relative",
                   zIndex: 1,
-                  display: 'flex',
-                  alignItems: 'center',
+                  display: "flex",
+                  alignItems: "center",
                   borderRadius: { xs: 4, md: 6 },
                   borderTopLeftRadius: { xs: 4, md: 0 },
-                  borderTopRightRadius: { xs: 4, md: 6 }
+                  borderTopRightRadius: { xs: 4, md: 6 },
                 }}
               >
-                <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    width: "100%",
+                  }}
+                >
                   <Typography
                     variant="h5"
                     sx={{
                       fontWeight: 700,
                       mb: 1,
                       color: accentColor,
-                      textAlign: 'center',
-                      fontSize: { xs: '1.5rem', md: '2rem' }
+                      textAlign: "center",
+                      fontSize: { xs: "1.5rem", md: "2rem" },
                     }}
                   >
                     Chào mừng đến CarCare
@@ -437,13 +521,13 @@ function Login() {
                     align="center"
                     sx={{
                       mb: { xs: 3, md: 4 },
-                      fontSize: { xs: '0.9rem', md: '1rem' },
-                      lineHeight: 1.6
+                      fontSize: { xs: "0.9rem", md: "1rem" },
+                      lineHeight: 1.6,
                     }}
                   >
                     {tabValue === 0
-                      ? 'Đăng nhập để tìm gara và đặt lịch'
-                      : 'Đăng ký để bắt đầu sử dụng dịch vụ'}
+                      ? "Đăng nhập để tìm gara và đặt lịch"
+                      : "Đăng ký để bắt đầu sử dụng dịch vụ"}
                   </Typography>
 
                   <Tabs
@@ -452,19 +536,19 @@ function Login() {
                     variant="fullWidth"
                     sx={{
                       mb: { xs: 3, md: 4 },
-                      '& .MuiTabs-indicator': {
+                      "& .MuiTabs-indicator": {
                         backgroundColor: accentColor,
                         height: 3,
-                        borderRadius: '3px'
+                        borderRadius: "3px",
                       },
-                      '& .MuiTab-root': {
+                      "& .MuiTab-root": {
                         fontWeight: 600,
-                        fontSize: { xs: '0.9rem', md: '1rem' },
-                        textTransform: 'none',
-                        color: '#9CA3AF',
-                        '&.Mui-selected': {
+                        fontSize: { xs: "0.9rem", md: "1rem" },
+                        textTransform: "none",
+                        color: "#9CA3AF",
+                        "&.Mui-selected": {
                           color: accentColor,
-                        }
+                        },
                       },
                     }}
                   >
@@ -472,7 +556,11 @@ function Login() {
                     <Tab label="Đăng Ký" />
                   </Tabs>
 
-                  <Box component="form" onSubmit={handleSubmit} sx={{ width: '100%' }}>
+                  <Box
+                    component="form"
+                    onSubmit={handleSubmit}
+                    sx={{ width: "100%" }}
+                  >
                     {tabValue === 0 ? (
                       // Form Đăng Nhập
                       <>
@@ -491,31 +579,38 @@ function Login() {
                           InputProps={{
                             startAdornment: (
                               <InputAdornment position="start">
-                                <EmailIcon sx={{ color: accentColor, opacity: 0.8, fontSize: { xs: '1.2rem', md: '1.5rem' } }} />
+                                <EmailIcon
+                                  sx={{
+                                    color: accentColor,
+                                    opacity: 0.8,
+                                    fontSize: { xs: "1.2rem", md: "1.5rem" },
+                                  }}
+                                />
                               </InputAdornment>
                             ),
                           }}
                           sx={{
-                            '& .MuiOutlinedInput-root': {
-                              borderRadius: '15px',
-                              backgroundColor: 'rgba(255, 255, 255, 0.05)',
-                              color: '#333',
-                              fontSize: { xs: '0.9rem', md: '1rem' },
-                              '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                                borderColor: accentColor,
-                                borderWidth: 2
-                              },
-                              '&:hover .MuiOutlinedInput-notchedOutline': {
+                            "& .MuiOutlinedInput-root": {
+                              borderRadius: "15px",
+                              backgroundColor: "rgba(255, 255, 255, 0.05)",
+                              color: "#333",
+                              fontSize: { xs: "0.9rem", md: "1rem" },
+                              "&.Mui-focused .MuiOutlinedInput-notchedOutline":
+                                {
+                                  borderColor: accentColor,
+                                  borderWidth: 2,
+                                },
+                              "&:hover .MuiOutlinedInput-notchedOutline": {
                                 borderColor: accentColor,
                               },
                               py: { xs: 0.3, md: 0.5 },
                             },
-                            '& .MuiInputLabel-root': {
-                              color: '#9CA3AF',
-                              fontSize: { xs: '0.9rem', md: '1rem' },
-                              '&.Mui-focused': { color: accentColor }
+                            "& .MuiInputLabel-root": {
+                              color: "#9CA3AF",
+                              fontSize: { xs: "0.9rem", md: "1rem" },
+                              "&.Mui-focused": { color: accentColor },
                             },
-                            mb: 2
+                            mb: 2,
                           }}
                         />
 
@@ -525,7 +620,7 @@ function Login() {
                           fullWidth
                           name="password"
                           label="Mật khẩu"
-                          type={showPassword ? 'text' : 'password'}
+                          type={showPassword ? "text" : "password"}
                           id="password"
                           autoComplete="current-password"
                           value={password}
@@ -534,7 +629,13 @@ function Login() {
                           InputProps={{
                             startAdornment: (
                               <InputAdornment position="start">
-                                <LockOutlinedIcon sx={{ color: accentColor, opacity: 0.8, fontSize: { xs: '1.2rem', md: '1.5rem' } }} />
+                                <LockOutlinedIcon
+                                  sx={{
+                                    color: accentColor,
+                                    opacity: 0.8,
+                                    fontSize: { xs: "1.2rem", md: "1.5rem" },
+                                  }}
+                                />
                               </InputAdornment>
                             ),
                             endAdornment: (
@@ -545,31 +646,36 @@ function Login() {
                                   edge="end"
                                   sx={{ color: accentColor, opacity: 0.8 }}
                                 >
-                                  {showPassword ? <VisibilityOff /> : <Visibility />}
+                                  {showPassword ? (
+                                    <VisibilityOff />
+                                  ) : (
+                                    <Visibility />
+                                  )}
                                 </IconButton>
                               </InputAdornment>
                             ),
                           }}
                           sx={{
-                            '& .MuiOutlinedInput-root': {
-                              borderRadius: '15px',
-                              backgroundColor: 'rgba(255, 255, 255, 0.05)',
-                              color: '#333',
-                              fontSize: { xs: '0.9rem', md: '1rem' },
-                              '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                                borderColor: accentColor,
-                                borderWidth: 2
-                              },
-                              '&:hover .MuiOutlinedInput-notchedOutline': {
+                            "& .MuiOutlinedInput-root": {
+                              borderRadius: "15px",
+                              backgroundColor: "rgba(255, 255, 255, 0.05)",
+                              color: "#333",
+                              fontSize: { xs: "0.9rem", md: "1rem" },
+                              "&.Mui-focused .MuiOutlinedInput-notchedOutline":
+                                {
+                                  borderColor: accentColor,
+                                  borderWidth: 2,
+                                },
+                              "&:hover .MuiOutlinedInput-notchedOutline": {
                                 borderColor: accentColor,
                               },
                               py: { xs: 0.3, md: 0.5 },
                             },
-                            '& .MuiInputLabel-root': {
-                              color: '#9CA3AF',
-                              fontSize: { xs: '0.9rem', md: '1rem' },
-                              '&.Mui-focused': { color: accentColor }
-                            }
+                            "& .MuiInputLabel-root": {
+                              color: "#9CA3AF",
+                              fontSize: { xs: "0.9rem", md: "1rem" },
+                              "&.Mui-focused": { color: accentColor },
+                            },
                           }}
                         />
                       </>
@@ -590,31 +696,38 @@ function Login() {
                           InputProps={{
                             startAdornment: (
                               <InputAdornment position="start">
-                                <PersonIcon sx={{ color: accentColor, opacity: 0.8, fontSize: { xs: '1.2rem', md: '1.5rem' } }} />
+                                <PersonIcon
+                                  sx={{
+                                    color: accentColor,
+                                    opacity: 0.8,
+                                    fontSize: { xs: "1.2rem", md: "1.5rem" },
+                                  }}
+                                />
                               </InputAdornment>
                             ),
                           }}
                           sx={{
-                            '& .MuiOutlinedInput-root': {
-                              borderRadius: '15px',
-                              backgroundColor: 'rgba(255, 255, 255, 0.05)',
-                              color: '#333',
-                              fontSize: { xs: '0.9rem', md: '1rem' },
-                              '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                                borderColor: accentColor,
-                                borderWidth: 2
-                              },
-                              '&:hover .MuiOutlinedInput-notchedOutline': {
+                            "& .MuiOutlinedInput-root": {
+                              borderRadius: "15px",
+                              backgroundColor: "rgba(255, 255, 255, 0.05)",
+                              color: "#333",
+                              fontSize: { xs: "0.9rem", md: "1rem" },
+                              "&.Mui-focused .MuiOutlinedInput-notchedOutline":
+                                {
+                                  borderColor: accentColor,
+                                  borderWidth: 2,
+                                },
+                              "&:hover .MuiOutlinedInput-notchedOutline": {
                                 borderColor: accentColor,
                               },
                               py: { xs: 0.3, md: 0.5 },
                             },
-                            '& .MuiInputLabel-root': {
-                              color: '#9CA3AF',
-                              fontSize: { xs: '0.9rem', md: '1rem' },
-                              '&.Mui-focused': { color: accentColor }
+                            "& .MuiInputLabel-root": {
+                              color: "#9CA3AF",
+                              fontSize: { xs: "0.9rem", md: "1rem" },
+                              "&.Mui-focused": { color: accentColor },
                             },
-                            mb: 2
+                            mb: 2,
                           }}
                         />
 
@@ -632,31 +745,38 @@ function Login() {
                           InputProps={{
                             startAdornment: (
                               <InputAdornment position="start">
-                                <PhoneIcon sx={{ color: accentColor, opacity: 0.8, fontSize: { xs: '1.2rem', md: '1.5rem' } }} />
+                                <PhoneIcon
+                                  sx={{
+                                    color: accentColor,
+                                    opacity: 0.8,
+                                    fontSize: { xs: "1.2rem", md: "1.5rem" },
+                                  }}
+                                />
                               </InputAdornment>
                             ),
                           }}
                           sx={{
-                            '& .MuiOutlinedInput-root': {
-                              borderRadius: '15px',
-                              backgroundColor: 'rgba(255, 255, 255, 0.05)',
-                              color: '#333',
-                              fontSize: { xs: '0.9rem', md: '1rem' },
-                              '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                                borderColor: accentColor,
-                                borderWidth: 2
-                              },
-                              '&:hover .MuiOutlinedInput-notchedOutline': {
+                            "& .MuiOutlinedInput-root": {
+                              borderRadius: "15px",
+                              backgroundColor: "rgba(255, 255, 255, 0.05)",
+                              color: "#333",
+                              fontSize: { xs: "0.9rem", md: "1rem" },
+                              "&.Mui-focused .MuiOutlinedInput-notchedOutline":
+                                {
+                                  borderColor: accentColor,
+                                  borderWidth: 2,
+                                },
+                              "&:hover .MuiOutlinedInput-notchedOutline": {
                                 borderColor: accentColor,
                               },
                               py: { xs: 0.3, md: 0.5 },
                             },
-                            '& .MuiInputLabel-root': {
-                              color: '#9CA3AF',
-                              fontSize: { xs: '0.9rem', md: '1rem' },
-                              '&.Mui-focused': { color: accentColor }
+                            "& .MuiInputLabel-root": {
+                              color: "#9CA3AF",
+                              fontSize: { xs: "0.9rem", md: "1rem" },
+                              "&.Mui-focused": { color: accentColor },
                             },
-                            mb: 2
+                            mb: 2,
                           }}
                         />
 
@@ -675,31 +795,38 @@ function Login() {
                           InputProps={{
                             startAdornment: (
                               <InputAdornment position="start">
-                                <EmailIcon sx={{ color: accentColor, opacity: 0.8, fontSize: { xs: '1.2rem', md: '1.5rem' } }} />
+                                <EmailIcon
+                                  sx={{
+                                    color: accentColor,
+                                    opacity: 0.8,
+                                    fontSize: { xs: "1.2rem", md: "1.5rem" },
+                                  }}
+                                />
                               </InputAdornment>
                             ),
                           }}
                           sx={{
-                            '& .MuiOutlinedInput-root': {
-                              borderRadius: '15px',
-                              backgroundColor: 'rgba(255, 255, 255, 0.05)',
-                              color: '#333',
-                              fontSize: { xs: '0.9rem', md: '1rem' },
-                              '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                                borderColor: accentColor,
-                                borderWidth: 2
-                              },
-                              '&:hover .MuiOutlinedInput-notchedOutline': {
+                            "& .MuiOutlinedInput-root": {
+                              borderRadius: "15px",
+                              backgroundColor: "rgba(255, 255, 255, 0.05)",
+                              color: "#333",
+                              fontSize: { xs: "0.9rem", md: "1rem" },
+                              "&.Mui-focused .MuiOutlinedInput-notchedOutline":
+                                {
+                                  borderColor: accentColor,
+                                  borderWidth: 2,
+                                },
+                              "&:hover .MuiOutlinedInput-notchedOutline": {
                                 borderColor: accentColor,
                               },
                               py: { xs: 0.3, md: 0.5 },
                             },
-                            '& .MuiInputLabel-root': {
-                              color: '#9CA3AF',
-                              fontSize: { xs: '0.9rem', md: '1rem' },
-                              '&.Mui-focused': { color: accentColor }
+                            "& .MuiInputLabel-root": {
+                              color: "#9CA3AF",
+                              fontSize: { xs: "0.9rem", md: "1rem" },
+                              "&.Mui-focused": { color: accentColor },
                             },
-                            mb: 2
+                            mb: 2,
                           }}
                         />
 
@@ -709,7 +836,7 @@ function Login() {
                           fullWidth
                           name="password"
                           label="Mật khẩu"
-                          type={showPassword ? 'text' : 'password'}
+                          type={showPassword ? "text" : "password"}
                           id="password"
                           value={password}
                           onChange={(e) => setPassword(e.target.value)}
@@ -717,7 +844,13 @@ function Login() {
                           InputProps={{
                             startAdornment: (
                               <InputAdornment position="start">
-                                <LockOutlinedIcon sx={{ color: accentColor, opacity: 0.8, fontSize: { xs: '1.2rem', md: '1.5rem' } }} />
+                                <LockOutlinedIcon
+                                  sx={{
+                                    color: accentColor,
+                                    opacity: 0.8,
+                                    fontSize: { xs: "1.2rem", md: "1.5rem" },
+                                  }}
+                                />
                               </InputAdornment>
                             ),
                             endAdornment: (
@@ -728,32 +861,37 @@ function Login() {
                                   edge="end"
                                   sx={{ color: accentColor, opacity: 0.8 }}
                                 >
-                                  {showPassword ? <VisibilityOff /> : <Visibility />}
+                                  {showPassword ? (
+                                    <VisibilityOff />
+                                  ) : (
+                                    <Visibility />
+                                  )}
                                 </IconButton>
                               </InputAdornment>
                             ),
                           }}
                           sx={{
-                            '& .MuiOutlinedInput-root': {
-                              borderRadius: '15px',
-                              backgroundColor: 'rgba(255, 255, 255, 0.05)',
-                              color: '#333',
-                              fontSize: { xs: '0.9rem', md: '1rem' },
-                              '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                                borderColor: accentColor,
-                                borderWidth: 2
-                              },
-                              '&:hover .MuiOutlinedInput-notchedOutline': {
+                            "& .MuiOutlinedInput-root": {
+                              borderRadius: "15px",
+                              backgroundColor: "rgba(255, 255, 255, 0.05)",
+                              color: "#333",
+                              fontSize: { xs: "0.9rem", md: "1rem" },
+                              "&.Mui-focused .MuiOutlinedInput-notchedOutline":
+                                {
+                                  borderColor: accentColor,
+                                  borderWidth: 2,
+                                },
+                              "&:hover .MuiOutlinedInput-notchedOutline": {
                                 borderColor: accentColor,
                               },
                               py: { xs: 0.3, md: 0.5 },
                             },
-                            '& .MuiInputLabel-root': {
-                              color: '#9CA3AF',
-                              fontSize: { xs: '0.9rem', md: '1rem' },
-                              '&.Mui-focused': { color: accentColor }
+                            "& .MuiInputLabel-root": {
+                              color: "#9CA3AF",
+                              fontSize: { xs: "0.9rem", md: "1rem" },
+                              "&.Mui-focused": { color: accentColor },
                             },
-                            mb: 2
+                            mb: 2,
                           }}
                         />
 
@@ -763,7 +901,7 @@ function Login() {
                           fullWidth
                           name="confirmPassword"
                           label="Xác nhận mật khẩu"
-                          type={showConfirmPassword ? 'text' : 'password'}
+                          type={showConfirmPassword ? "text" : "password"}
                           id="confirmPassword"
                           value={confirmPassword}
                           onChange={(e) => setConfirmPassword(e.target.value)}
@@ -771,7 +909,13 @@ function Login() {
                           InputProps={{
                             startAdornment: (
                               <InputAdornment position="start">
-                                <LockOutlinedIcon sx={{ color: accentColor, opacity: 0.8, fontSize: { xs: '1.2rem', md: '1.5rem' } }} />
+                                <LockOutlinedIcon
+                                  sx={{
+                                    color: accentColor,
+                                    opacity: 0.8,
+                                    fontSize: { xs: "1.2rem", md: "1.5rem" },
+                                  }}
+                                />
                               </InputAdornment>
                             ),
                             endAdornment: (
@@ -782,49 +926,60 @@ function Login() {
                                   edge="end"
                                   sx={{ color: accentColor, opacity: 0.8 }}
                                 >
-                                  {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
+                                  {showConfirmPassword ? (
+                                    <VisibilityOff />
+                                  ) : (
+                                    <Visibility />
+                                  )}
                                 </IconButton>
                               </InputAdornment>
                             ),
                           }}
                           sx={{
-                            '& .MuiOutlinedInput-root': {
-                              borderRadius: '15px',
-                              backgroundColor: 'rgba(255, 255, 255, 0.05)',
-                              color: '#333',
-                              fontSize: { xs: '0.9rem', md: '1rem' },
-                              '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                                borderColor: accentColor,
-                                borderWidth: 2
-                              },
-                              '&:hover .MuiOutlinedInput-notchedOutline': {
+                            "& .MuiOutlinedInput-root": {
+                              borderRadius: "15px",
+                              backgroundColor: "rgba(255, 255, 255, 0.05)",
+                              color: "#333",
+                              fontSize: { xs: "0.9rem", md: "1rem" },
+                              "&.Mui-focused .MuiOutlinedInput-notchedOutline":
+                                {
+                                  borderColor: accentColor,
+                                  borderWidth: 2,
+                                },
+                              "&:hover .MuiOutlinedInput-notchedOutline": {
                                 borderColor: accentColor,
                               },
                               py: { xs: 0.3, md: 0.5 },
                             },
-                            '& .MuiInputLabel-root': {
-                              color: '#9CA3AF',
-                              fontSize: { xs: '0.9rem', md: '1rem' },
-                              '&.Mui-focused': { color: accentColor }
-                            }
+                            "& .MuiInputLabel-root": {
+                              color: "#9CA3AF",
+                              fontSize: { xs: "0.9rem", md: "1rem" },
+                              "&.Mui-focused": { color: accentColor },
+                            },
                           }}
                         />
                       </>
                     )}
 
-                    <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 1, mb: 3 }}>
+                    <Box
+                      sx={{
+                        display: "flex",
+                        justifyContent: "flex-end",
+                        mt: 1,
+                        mb: 3,
+                      }}
+                    >
                       <Link
                         href="#"
                         variant="body2"
                         sx={{
                           color: accentColor,
                           fontWeight: 500,
-                          fontSize: { xs: '0.8rem', md: '0.875rem' },
-                          '&:hover': {
-
-                            textDecoration: 'none'
+                          fontSize: { xs: "0.8rem", md: "0.875rem" },
+                          "&:hover": {
+                            textDecoration: "none",
                           },
-                          transition: 'all 0.2s ease',
+                          transition: "all 0.2s ease",
                         }}
                       >
                         Quên mật khẩu?
@@ -836,51 +991,59 @@ function Login() {
                       variant="contained"
                       sx={{
                         py: { xs: 1.2, md: 1.8 },
-                        borderRadius: '15px',
+                        borderRadius: "15px",
                         background: accentColor,
                         color: primaryColor,
-                        fontSize: { xs: '0.9rem', md: '1rem' },
+                        fontSize: { xs: "0.9rem", md: "1rem" },
                         fontWeight: 600,
-                        textTransform: 'none',
-                        letterSpacing: '0.5px',
-                        '&:hover': {
+                        textTransform: "none",
+                        letterSpacing: "0.5px",
+                        "&:hover": {
                           boxShadow: `0 8px 25px ${accentColor}60`,
-                          transform: 'translateY(-3px)'
+                          transform: "translateY(-3px)",
                         },
-                        transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                        transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
                         boxShadow: `0 6px 20px ${accentColor}40`,
                       }}
                     >
-                      {tabValue === 0 ? 'Đăng nhập' : 'Đăng ký'}
+                      {tabValue === 0 ? "Đăng nhập" : "Đăng ký"}
                     </Button>
 
-                    <Divider sx={{ my: { xs: 2, md: 3 }, color: '#9CA3AF', fontSize: { xs: '0.8rem', md: '0.9rem' } }}>
+                    <Divider
+                      sx={{
+                        my: { xs: 2, md: 3 },
+                        color: "#9CA3AF",
+                        fontSize: { xs: "0.8rem", md: "0.9rem" },
+                      }}
+                    >
                       Hoặc tiếp tục với
                     </Divider>
 
-                    <Box sx={{
-                      display: 'flex',
-                      justifyContent: 'center',
-                      gap: { xs: 2, md: 3 },
-                      mt: 2,
-                      flexWrap: { xs: 'wrap', sm: 'nowrap' }
-                    }}>
+                    <Box
+                      sx={{
+                        display: "flex",
+                        justifyContent: "center",
+                        gap: { xs: 2, md: 3 },
+                        mt: 2,
+                        flexWrap: { xs: "wrap", sm: "nowrap" },
+                      }}
+                    >
                       <Button
                         variant="outlined"
                         startIcon={<GoogleIcon />}
                         sx={{
-                          borderRadius: '10px',
-                          borderColor: '#DB4437',
-                          color: '#DB4437',
+                          borderRadius: "10px",
+                          borderColor: "#DB4437",
+                          color: "#DB4437",
                           px: { xs: 2, md: 3 },
                           py: 1.2,
-                          fontSize: { xs: '0.8rem', md: '0.875rem' },
-                          '&:hover': {
-                            bgcolor: 'rgba(219, 68, 55, 0.1)',
-                            borderColor: '#DB4437',
-                            transform: 'translateY(-2px)'
+                          fontSize: { xs: "0.8rem", md: "0.875rem" },
+                          "&:hover": {
+                            bgcolor: "rgba(219, 68, 55, 0.1)",
+                            borderColor: "#DB4437",
+                            transform: "translateY(-2px)",
                           },
-                          transition: 'all 0.2s ease',
+                          transition: "all 0.2s ease",
                         }}
                       >
                         Google
@@ -889,33 +1052,41 @@ function Login() {
                         variant="outlined"
                         startIcon={<FacebookIcon />}
                         sx={{
-                          borderRadius: '10px',
-                          borderColor: '#1877F2',
-                          color: '#1877F2',
+                          borderRadius: "10px",
+                          borderColor: "#1877F2",
+                          color: "#1877F2",
                           px: { xs: 2, md: 3 },
                           py: 1.2,
-                          fontSize: { xs: '0.8rem', md: '0.875rem' },
-                          '&:hover': {
-                            bgcolor: 'rgba(24, 119, 242, 0.1)',
-                            borderColor: '#1877F2',
-                            transform: 'translateY(-2px)'
+                          fontSize: { xs: "0.8rem", md: "0.875rem" },
+                          "&:hover": {
+                            bgcolor: "rgba(24, 119, 242, 0.1)",
+                            borderColor: "#1877F2",
+                            transform: "translateY(-2px)",
                           },
-                          transition: 'all 0.2s ease',
+                          transition: "all 0.2s ease",
                         }}
                       >
                         Facebook
                       </Button>
                     </Box>
 
-                    <Box sx={{
-                      display: 'flex',
-                      justifyContent: 'center',
-                      mt: { xs: 3, md: 4 },
-                      flexWrap: 'wrap',
-                      gap: 1
-                    }}>
-                      <Typography variant="body2" color="#9CA3AF" sx={{ fontSize: { xs: '0.8rem', md: '0.875rem' } }}>
-                        {tabValue === 0 ? 'Chưa có tài khoản?' : 'Đã có tài khoản?'}
+                    <Box
+                      sx={{
+                        display: "flex",
+                        justifyContent: "center",
+                        mt: { xs: 3, md: 4 },
+                        flexWrap: "wrap",
+                        gap: 1,
+                      }}
+                    >
+                      <Typography
+                        variant="body2"
+                        color="#9CA3AF"
+                        sx={{ fontSize: { xs: "0.8rem", md: "0.875rem" } }}
+                      >
+                        {tabValue === 0
+                          ? "Chưa có tài khoản?"
+                          : "Đã có tài khoản?"}
                       </Typography>
                       <Link
                         href="#"
@@ -927,15 +1098,14 @@ function Login() {
                         sx={{
                           color: accentColor,
                           fontWeight: 600,
-                          fontSize: { xs: '0.8rem', md: '0.875rem' },
-                          '&:hover': {
-
-                            textDecoration: 'none'
+                          fontSize: { xs: "0.8rem", md: "0.875rem" },
+                          "&:hover": {
+                            textDecoration: "none",
                           },
-                          transition: 'all 0.2s ease',
+                          transition: "all 0.2s ease",
                         }}
                       >
-                        {tabValue === 0 ? 'Đăng ký ngay' : 'Đăng nhập'}
+                        {tabValue === 0 ? "Đăng ký ngay" : "Đăng nhập"}
                       </Link>
                     </Box>
                   </Box>
