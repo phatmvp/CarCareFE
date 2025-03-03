@@ -32,8 +32,8 @@ import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import HomeIcon from "@mui/icons-material/Home";
 import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
 import { useNavigate } from "react-router-dom";
-import Header from "./../Header/Header";
-import Footer from "../Footer/Footer";
+import Header from "../../component/Header/Header";
+import Footer from "../../component/Footer/Footer";
 
 const PriceChip = styled(Chip)(({ theme }) => ({
   backgroundColor: "#004d40",

@@ -47,8 +47,8 @@ import {
   MapsHomeWork,
   NavigateNext,
 } from "@mui/icons-material";
-import Header from "../Header/Header";
-import Footer from "../Footer/Footer";
+import Header from "../../component/Header/Header";
+import Footer from "../../component/Footer/Footer";
 import { primaryColor, accentColor } from "../../config/constants";
 
 // Tab Panel Component

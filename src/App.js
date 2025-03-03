@@ -2,8 +2,8 @@ import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 
 import HomePage from "./pages/HomePage/HomePage";
 import Login from "./pages/Login/Login";
-import GaragesList from "./component/AllGarage/GaragesList";
-import GarageDetail from "./component/AllGarage/GarageDetail";
+import GaragesList from "./pages/GaragesList/GaragesList";
+import GarageDetail from "./pages/GarageDetail/GarageDetail";
 import BookAppointment from "./pages/Book/BookAppointment";
 import Layout from "./component/Layout/Layout";
 function App() {
