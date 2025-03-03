@@ -1,0 +1,186 @@
+/* AdminPage.css */
+body {
+  background-color: #f8f9fa;
+  font-family: 'Roboto', Arial, sans-serif;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+.admin-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-navbar {
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.hover-effect {
+  transition: color 0.3s ease-in-out;
+}
+
+.hover-effect:hover {
+  color: #007bff !important;
+}
+
+.btn-outline-danger {
+  border-radius: 20px;
+  font-weight: 500;
+}
+
+.btn-outline-danger:hover {
+  background-color: #dc3545 !important;
+  color: white !important;
+}
+
+/* Mobile Menu Styles */
+.mobile-menu-toggle {
+  cursor: pointer;
+  padding: 10px;
+}
+
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  right: -270px;
+  width: 270px;
+  height: 100%;
+  background-color: white;
+  box-shadow: -3px 0 15px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  transition: right 0.3s ease;
+  overflow-y: auto;
+}
+
+.mobile-menu.open {
+  right: 0;
+}
+
+.mobile-menu-close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.mobile-menu-items {
+  padding: 60px 0 0;
+}
+
+.mobile-menu-item {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  color: #495057;
+  cursor: pointer;
+  border-bottom: 1px solid #f0f0f0;
+  transition: all 0.2s ease;
+}
+
+.mobile-menu-item:hover {
+  background-color: #f8f9fa;
+}
+
+.mobile-menu-item.logout {
+  color: #dc3545;
+  margin-top: 10px;
+}
+
+/* Welcome Message */
+.welcome-message {
+  margin-bottom: 20px;
+  padding: 10px 0;
+}
+
+/* Card Grid for Mobile */
+.action-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.action-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 150px;
+  color: white;
+  border-radius: 12px;
+  padding: 20px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.action-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 7px 14px rgba(0, 0, 0, 0.2);
+}
+
+.action-card-icon {
+  margin-bottom: 15px;
+  width: 50px;
+  height: 50px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.action-card-text {
+  font-weight: 500;
+  font-size: 16px;
+}
+
+/* Background Colors */
+.bg-primary {
+  background: linear-gradient(135deg, #2980b9, #3498db);
+}
+
+.bg-danger {
+  background: linear-gradient(135deg, #c0392b, #e74c3c);
+}
+
+.bg-success {
+  background: linear-gradient(135deg, #27ae60, #2ecc71);
+}
+
+/* Media Queries */
+@media (max-width: 576px) {
+  .action-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  .action-card {
+    min-height: 100px;
+    flex-direction: row;
+    justify-content: flex-start;
+    text-align: left;
+  }
+  
+  .action-card-icon {
+    margin-bottom: 0;
+    margin-right: 15px;
+  }
+}
+
+@media (min-width: 577px) and (max-width: 768px) {
+  .action-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 769px) and (max-width: 992px) {
+  .action-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

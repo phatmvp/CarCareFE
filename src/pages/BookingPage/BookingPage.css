@@ -1,0 +1,179 @@
+/* BookingPage.css */
+body {
+    background-color: #f8f9fa;
+    font-family: 'Roboto', Arial, sans-serif;
+    color: #333;
+  }
+  
+  /* Page Layout */
+  .booking-page {
+    min-height: 100vh;
+    padding-bottom: 2rem;
+  }
+  
+  .page-header {
+    padding: 1rem 0;
+    position: relative;
+  }
+  
+  .page-header h2 {
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 0;
+  }
+  
+  /* Booking Cards for Mobile */
+  .booking-card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .booking-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  }
+  
+  .booking-card .card-header {
+    background: linear-gradient(to right, #f8f9fa, #e9ecef);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    padding: 0.8rem 1rem;
+  }
+  
+  .booking-card .customer-name {
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+  
+  .booking-info {
+    margin-bottom: 1rem;
+  }
+  
+  .info-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    color: #495057;
+  }
+  
+  .info-icon {
+    margin-right: 10px;
+    color: #6c757d;
+    min-width: 16px;
+  }
+  
+  .service-list {
+    padding-left: 1rem;
+    margin-bottom: 0;
+  }
+  
+  .service-list li {
+    margin-bottom: 0.25rem;
+  }
+  
+  .action-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  
+  /* Customer Info in Bill Modal */
+  .customer-info .info-item,
+  .booking-info .info-item {
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Responsive Table */
+  .table-responsive {
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  /* Status Badge Styling */
+  .badge {
+    font-weight: 500;
+    padding: 0.5em 0.75em;
+    border-radius: 6px;
+  }
+  
+  /* Quantity Controls */
+  .input-group-sm .form-control {
+    text-align: center;
+  }
+  
+  /* Animation for buttons */
+  .btn {
+    transition: all 0.3s ease;
+  }
+  
+  .btn:active {
+    transform: scale(0.97);
+  }
+  
+  /* Additional mobile styles */
+  @media (max-width: 576px) {
+    .booking-card .card-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    
+    .booking-card .card-header .badge {
+      margin-top: 8px;
+    }
+    
+    .action-buttons {
+      flex-direction: column;
+      width: 100%;
+    }
+    
+    .action-buttons .btn {
+      width: 100%;
+      margin-right: 0 !important;
+    }
+    
+    .page-header h2 {
+      font-size: 1.5rem;
+    }
+    
+    /* Make modals more mobile-friendly */
+    .modal-footer {
+      flex-direction: column;
+    }
+    
+    .modal-footer .btn {
+      width: 100%;
+      margin: 0.25rem 0 !important;
+    }
+  }
+  
+  /* Medium screens */
+  @media (min-width: 577px) and (max-width: 991px) {
+    .action-buttons {
+      flex-wrap: wrap;
+    }
+    
+    .action-buttons .btn {
+      margin-bottom: 0.5rem;
+    }
+  }
+  
+  /* Custom accordion styling */
+  .accordion-button:not(.collapsed) {
+    background-color: rgba(0, 123, 255, 0.1);
+    color: #0d6efd;
+  }
+  
+  .accordion-button:focus {
+    box-shadow: none;
+    border-color: rgba(0, 123, 255, 0.1);
+  }
+  
+  /* Loading spinner */
+  .spinner-border {
+    width: 3rem;
+    height: 3rem;
+  }
