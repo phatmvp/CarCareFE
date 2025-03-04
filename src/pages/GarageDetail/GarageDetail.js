@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { styled } from "@mui/material/styles";
 import {
   Container,
   Typography,
@@ -32,6 +33,13 @@ import {
   Breadcrumbs,
   Link,
   IconButton,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  Checkbox,
+  FormControlLabel,
+  Fade,
 } from "@mui/material";
 import {
   DirectionsCar,
@@ -46,9 +54,10 @@ import {
   Comment,
   MapsHomeWork,
   NavigateNext,
+  Close,
 } from "@mui/icons-material";
-import Header from "../Header/Header";
-import Footer from "../Footer/Footer";
+import Header from "../../component/Header/Header";
+import Footer from "../../component/Footer/Footer";
 import { primaryColor, accentColor } from "../../config/constants";
 
 // Tab Panel Component
@@ -75,6 +84,45 @@ const GarageDetail = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [tabValue, setTabValue] = useState(0);
+  const [openModal, setOpenModal] = useState(false);
+  const [selectedServices, setSelectedServices] = useState([]);
+
+  const handleOpenModal = () => {
+    setOpenModal(true);
+    setSelectedServices([]); // Reset selected services when opening modal
+  };
+
+  // Handle closing modal
+  const handleCloseModal = () => {
+    setOpenModal(false);
+  };
+
+  // Handle service selection
+  const handleServiceChange = (serviceId) => {
+    setSelectedServices((prev) =>
+      prev.includes(serviceId)
+        ? prev.filter((id) => id !== serviceId)
+        : [...prev, serviceId]
+    );
+  };
+
+  // Handle confirming booking
+  const handleConfirmBooking = () => {
+    if (selectedServices.length === 0) {
+      alert("Vui lòng chọn ít nhất một dịch vụ!");
+      return;
+    }
+
+    // Navigate to booking confirmation page with selected services
+    navigate("/car-care/booking-confirmation", {
+      state: {
+        garageId,
+        selectedServices,
+        garageName: garage.name,
+      },
+    });
+    handleCloseModal();
+  };
 
   // Giả lập dữ liệu đánh giá
   const reviews = [
@@ -141,7 +189,8 @@ const GarageDetail = () => {
         const response = await axios.get(
           `http://localhost:5000/api/${garageId}`
         );
-        setGarage(response.data.garage);
+
+        // setGarage((prev) => ({ ...prev, ...response.data }));
       } catch (err) {
         setError("Không thể tải thông tin chi tiết gara");
         console.error("Fetch error:", err);
@@ -176,35 +225,48 @@ const GarageDetail = () => {
         "Gara ABC là một trong những gara uy tín hàng đầu tại TP.HCM với hơn 10 năm kinh nghiệm trong lĩnh vực sửa chữa và bảo dưỡng xe ô tô. Chúng tôi tự hào cung cấp dịch vụ chuyên nghiệp với đội ngũ kỹ thuật viên tay nghề cao, trang thiết bị hiện đại, và cam kết mang đến sự hài lòng cho khách hàng.",
       services: [
         {
-          name: "Bảo dưỡng định kỳ",
-          price: 500000,
-          description: "Kiểm tra tổng quát, thay dầu, lọc gió, lọc dầu...",
+          _id: "67c5ee62b6fe5d84b8dcea12",
+          name: "Rửa xe",
+          description: "Rửa xe sạch sẽ, làm sạch nội thất và ngoại thất.",
+          price: 100000,
+          duration: 30,
+          category: "Bảo dưỡng",
         },
         {
-          name: "Sửa chữa động cơ",
-          price: 2000000,
-          description: "Kiểm tra, sửa chữa và thay thế các bộ phận động cơ",
+          _id: "67c5ee7db6fe5d84b8dcea13",
+
+          name: "Thay dầu máy",
+          description: "Thay dầu máy và lọc dầu định kỳ.",
+          price: 300000,
+          duration: 45,
+          category: "Bảo dưỡng",
         },
         {
+          _id: "67c5ee86b6fe5d84b8dcea14",
+
           name: "Điện - Điện tử",
           price: 800000,
           description: "Kiểm tra và sửa chữa hệ thống điện trên xe",
         },
         {
-          name: "Hệ thống phanh",
-          price: 600000,
-          description:
-            "Kiểm tra, bảo dưỡng và thay thế phụ tùng hệ thống phanh",
+          _id: "67c5ee8eb6fe5d84b8dcea15",
+
+          name: "Sửa phanh",
+          description: "Kiểm tra và sửa chữa hệ thống phanh.",
+          price: 400000,
+          duration: 90,
+          category: "Sửa chữa",
+          status: "Hoạt động",
         },
         {
-          name: "Hệ thống treo",
-          price: 1500000,
-          description: "Kiểm tra và sửa chữa hệ thống treo, giảm xóc",
-        },
-        {
-          name: "Điều hòa",
-          price: 900000,
-          description: "Bảo dưỡng, sửa chữa và nạp gas điều hòa",
+          _id: "67c5ee95b6fe5d84b8dcea16",
+
+          name: "Bảo dưỡng điều hòa",
+          description: "Vệ sinh và bảo dưỡng hệ thống điều hòa.",
+          price: 250000,
+          duration: 60,
+          category: "Bảo dưỡng",
+          status: "Hoạt động",
         },
       ],
       facilities: [
@@ -410,6 +472,7 @@ const GarageDetail = () => {
                   <Button
                     variant="contained"
                     size="large"
+                    onClick={handleOpenModal}
                     sx={{
                       mt: 1,
                       fontWeight: "bold",
@@ -879,9 +942,163 @@ const GarageDetail = () => {
             )}
           </TabPanel>
         </Box>
+        <StyledDialog
+          open={openModal}
+          onClose={handleCloseModal}
+          maxWidth="sm"
+          fullWidth
+          TransitionComponent={Fade}
+          transitionDuration={300}
+        >
+          <StyledDialogTitle>
+            <Typography variant="h6" sx={{ fontWeight: 600 }}>
+              Chọn Dịch Vụ Sửa Chữa
+            </Typography>
+            <IconButton onClick={handleCloseModal} sx={{ color: "white" }}>
+              <Close />
+            </IconButton>
+          </StyledDialogTitle>
+
+          <DialogContent sx={{ p: 3 }}>
+            <Box sx={{ mt: 1 }}>
+              {garage?.services.map((service, index) => (
+                <ServiceItem key={index}>
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        checked={selectedServices.includes(index)}
+                        onChange={() => handleServiceChange(index)}
+                        sx={{
+                          color: accentColor,
+                          "&.Mui-checked": {
+                            color: accentColor,
+                          },
+                        }}
+                      />
+                    }
+                    label={
+                      <Box sx={{ flexGrow: 1 }}>
+                        <Typography
+                          variant="subtitle1"
+                          sx={{ fontWeight: 500 }}
+                        >
+                          {service.name}
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary">
+                          {service.description}
+                        </Typography>
+                      </Box>
+                    }
+                    sx={{ m: 0, width: "100%" }}
+                  />
+                  <Chip
+                    label={`${service.price.toLocaleString()} VND`}
+                    size="small"
+                    color="primary"
+                    variant="outlined"
+                    sx={{
+                      fontWeight: 500,
+                      borderRadius: 4,
+                      minWidth: 100,
+                    }}
+                  />
+                </ServiceItem>
+              ))}
+
+              {selectedServices.length > 0 && (
+                <TotalBox>
+                  <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
+                    Tổng cộng:{" "}
+                    {garage?.services
+                      .filter((_, index) => selectedServices.includes(index))
+                      .reduce((sum, service) => sum + service.price, 0)
+                      .toLocaleString()}{" "}
+                    VND
+                  </Typography>
+                </TotalBox>
+              )}
+            </Box>
+          </DialogContent>
+
+          <DialogActions sx={{ p: 3, pt: 0 }}>
+            <Button
+              onClick={handleCloseModal}
+              variant="outlined"
+              sx={{
+                borderRadius: 8,
+                px: 3,
+                py: 1,
+                textTransform: "none",
+                fontSize: "1rem",
+              }}
+            >
+              Hủy bỏ
+            </Button>
+            <Button
+              onClick={handleConfirmBooking}
+              variant="contained"
+              disabled={selectedServices.length === 0}
+              sx={{
+                borderRadius: 8,
+                px: 3,
+                py: 1,
+                textTransform: "none",
+                fontSize: "1rem",
+                backgroundColor: accentColor,
+                "&:hover": {
+                  backgroundColor: "#00695c",
+                },
+                boxShadow: "0 4px 12px rgba(0, 77, 64, 0.2)",
+              }}
+            >
+              Xác nhận đặt lịch
+            </Button>
+          </DialogActions>
+        </StyledDialog>
       </Container>
     </>
   );
 };
 
 export default GarageDetail;
+
+// Custom styled components
+const StyledDialog = styled(Dialog)(({ theme }) => ({
+  "& .MuiDialog-paper": {
+    borderRadius: 16,
+    boxShadow: "0 8px 32px rgba(0, 0, 0, 0.12)",
+    background: "linear-gradient(145deg, #ffffff, #f5f7fa)",
+  },
+}));
+
+const StyledDialogTitle = styled(DialogTitle)(({ theme }) => ({
+  backgroundColor: accentColor,
+  color: "white",
+  padding: theme.spacing(2, 3),
+  borderRadius: "16px 16px 0 0",
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center",
+}));
+
+const ServiceItem = styled(Box)(({ theme }) => ({
+  display: "flex",
+  alignItems: "center",
+  padding: theme.spacing(1.5),
+  borderRadius: 8,
+  marginBottom: theme.spacing(1),
+  backgroundColor: "white",
+  transition: "all 0.3s ease",
+  "&:hover": {
+    backgroundColor: "#f8f9fa",
+    transform: "translateX(4px)",
+    boxShadow: "0 4px 12px rgba(0, 0, 0, 0.05)",
+  },
+}));
+
+const TotalBox = styled(Box)(({ theme }) => ({
+  padding: theme.spacing(2),
+  backgroundColor: "#e8f5e9",
+  borderRadius: 8,
+  marginTop: theme.spacing(2),
+}));

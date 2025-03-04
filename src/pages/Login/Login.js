@@ -80,7 +80,6 @@ function Login() {
         });
 
         const data = await response.json();
-        console.log(data);
 
         if (!response.ok) {
           throw new Error(data.error || "Đăng nhập thất bại");
@@ -96,11 +95,11 @@ function Login() {
           severity: "success",
           message: "Đăng nhập thành công!",
         });
-        // event.preventDefault();
-        // // Chuyển hướng sau khi đăng nhập thành công
-        // setTimeout(() => {
-        //   window.location.href = "/car-care/login/#";
-        // }, 1500);
+        if (data.user.role === "customer") {
+          window.location.href = "/car-care/home";
+        } else if (data.user.role === "garage_owner") {
+          window.location.href = "/garageside";
+        }
       } else {
         // Xử lý đăng ký
         const response = await fetch(
@@ -126,7 +125,6 @@ function Login() {
           message: "Đăng ký thành công! Vui lòng đăng nhập.",
         });
 
-        // Chuyển sang tab đăng nhập sau khi đăng ký thành công
         setTimeout(() => {
           setTabValue(0);
           setFullName("");
@@ -234,34 +232,25 @@ function Login() {
                       mb: { xs: 2, md: 3 },
                     }}
                   >
-                    <Avatar
-                      sx={{
-                        bgcolor: "white",
-                        width: { xs: 48, md: 60 },
-                        height: { xs: 48, md: 60 },
-                        boxShadow: "0 8px 24px rgba(0, 0, 0, 0.3)",
-                        mr: 2,
-                      }}
-                    >
-                      <DirectionsCarIcon
-                        sx={{
-                          fontSize: { xs: "1.5rem", md: "2rem" },
-                          color: accentColor,
-                        }}
-                      />
-                    </Avatar>
                     <Typography
-                      component="h1"
-                      variant="h3"
+                      variant="h5"
+                      component="a"
+                      href="/car-care/home"
                       sx={{
-                        fontWeight: 800,
-                        letterSpacing: "-0.5px",
-                        textShadow: "0 2px 10px rgba(0,0,0,0.3)",
-                        color: "white",
-                        fontSize: { xs: "2rem", md: "3rem" },
+                        fontWeight: 900,
+                        color: accentColor,
+                        textDecoration: "none",
+                        display: "flex",
+                        alignItems: "center",
                       }}
                     >
-                      CarCare
+                      <img
+                        src="/logo/logo2.png"
+                        alt="logo"
+                        loading="lazy"
+                        width="250px"
+                        style={{ marginRight: "10px" }}
+                      />
                     </Typography>
                   </Box>
 
