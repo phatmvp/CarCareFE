@@ -76,6 +76,10 @@ const GarageDetail = () => {
   const [error, setError] = useState(null);
   const [tabValue, setTabValue] = useState(0);
 
+  const handleViewTap = () => {
+    navigate("/book-appointment");
+  };
+
   // Giả lập dữ liệu đánh giá
   const reviews = [
     {
@@ -408,6 +412,7 @@ const GarageDetail = () => {
                     Dựa trên {garage.totalReviews} đánh giá
                   </Typography>
                   <Button
+                    onClick={() => handleViewTap()}
                     variant="contained"
                     size="large"
                     sx={{

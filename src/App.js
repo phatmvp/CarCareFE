@@ -5,11 +5,13 @@ import Login from "./pages/Login/Login";
 import GaragesList from "./component/AllGarage/GaragesList";
 import GarageDetail from "./component/AllGarage/GarageDetail";
 import BookAppointment from "./pages/Book/BookAppointment";
-import GaragePage from './pages/GaragePage/GaragePage'
+import GaragePage from "./pages/GaragePage/GaragePage";
 import SchedulePage from "./pages/SchedulePage/SchedulePage";
 import ReportPage from "./pages/ReportPage/ReportPage";
 import BookingPage from "./pages/BookingPage/BookingPage";
 import Layout from "./component/Layout/Layout";
+import GarageAppointments from "./pages/Book/GarageAppointments";
+import AppointmentBooking from "./pages/Book/AppointmentBooking";
 function App() {
   return (
     <BrowserRouter>
@@ -42,9 +44,12 @@ function App() {
         />
         <Route path="/book-appointment" element={<BookAppointment />} />
         <Route path="/garageside" element={<GaragePage />} />
-    <Route path="/booking" element={<BookingPage />} />
-    <Route path="/schedule" element={<SchedulePage />} />
-    <Route path="/report" element={<ReportPage />} />
+        <Route path="/booking" element={<BookingPage />} />
+        <Route path="/schedule" element={<SchedulePage />} />
+        <Route path="/report" element={<ReportPage />} />
+
+        <Route path="/gara-manager" element={<GarageAppointments />} />
+        <Route path="/book" element={<AppointmentBooking />} />
       </Routes>
     </BrowserRouter>
   );
